@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://open.account.xiaomi.com/user/profile",
+    "parameters": {
+      "clientId": 123456789,
+      "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "result": "ok",
+      "description": "success",
+      "data": {
+        "nickname": "JohnDoe",
+        "miliaoId": 9876543210,
+        "avatarUrl": "https://account.xiaomi.com/avatar/9876543210.jpg"
+      }
+    }
+  }
+}

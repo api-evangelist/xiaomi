@@ -1,0 +1,49 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.xiaomimimo.com/v1/chat/completions",
+    "headers": {
+      "api-key": "xm_sk_xxxxxxxxxxxx",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "model": "mimo-v2.5-pro",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a helpful assistant."
+        },
+        {
+          "role": "user",
+          "content": "What is the capital of France?"
+        }
+      ],
+      "temperature": 0.7,
+      "max_tokens": 1024
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "chatcmpl-abc123xyz",
+      "object": "chat.completion",
+      "created": 1746230400,
+      "model": "mimo-v2.5-pro",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "The capital of France is Paris."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 28,
+        "completion_tokens": 10,
+        "total_tokens": 38
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xiaomi": "https://dev.mi.com/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "UserProfile": "schema:Person",
+    "nickname": "schema:name",
+    "miliaoId": "xiaomi:miliaoId",
+    "avatarUrl": "schema:image",
+    "email": "schema:email",
+    "phone": "schema:telephone",
+    "openId": "xiaomi:openId",
+
+    "Bucket": "xiaomi:Bucket",
+    "bucketName": "xiaomi:bucketName",
+    "Object": "schema:DigitalDocument",
+    "objectName": "schema:name",
+
+    "ChatCompletion": "xiaomi:ChatCompletion",
+    "model": "xiaomi:model",
+    "messages": "xiaomi:messages",
+    "role": "xiaomi:role",
+    "content": "schema:text",
+    "usage": "xiaomi:usage",
+    "promptTokens": "xiaomi:promptTokens",
+    "completionTokens": "xiaomi:completionTokens",
+    "totalTokens": "xiaomi:totalTokens",
+
+    "created": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "modified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

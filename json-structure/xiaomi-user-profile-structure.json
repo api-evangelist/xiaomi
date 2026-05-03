@@ -1,0 +1,46 @@
+{
+  "title": "Xiaomi User Profile Structure",
+  "description": "JSON structure documentation for the Xiaomi Open API user profile object.",
+  "type": "object",
+  "fields": [
+    {
+      "name": "result",
+      "type": "string",
+      "description": "API result status code.",
+      "required": true
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Human-readable result description.",
+      "required": false
+    },
+    {
+      "name": "data",
+      "type": "object",
+      "description": "The user profile data payload.",
+      "required": true,
+      "fields": [
+        {
+          "name": "nickname",
+          "type": "string",
+          "description": "User's display name on Xiaomi platform.",
+          "required": false
+        },
+        {
+          "name": "miliaoId",
+          "type": "integer",
+          "description": "Unique Xiaomi account identifier.",
+          "required": true
+        },
+        {
+          "name": "avatarUrl",
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the user's avatar image.",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

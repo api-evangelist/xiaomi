@@ -1,0 +1,185 @@
+openapi: 3.0.3
+info:
+  title: Xiaomi MiMo AI API
+  description: >-
+    The Xiaomi MiMo AI API provides OpenAI-compatible access to Xiaomi's MiMo
+    large language model family. Supports chat completions with reasoning, coding,
+    multimodal, and text-to-speech model variants. Compatible with OpenAI SDKs
+    and standard tooling.
+  version: 1.0.0
+  contact:
+    name: Xiaomi MiMo Developer
+    url: https://platform.xiaomimimo.com/
+servers:
+  - url: https://api.xiaomimimo.com
+    description: Xiaomi MiMo AI API
+security:
+  - apiKeyAuth: []
+paths:
+  /v1/chat/completions:
+    post:
+      operationId: createChatCompletion
+      summary: Create Chat Completion
+      description: >-
+        Creates a chat completion response from the specified MiMo model.
+        The API is OpenAI-compatible and supports streaming, function calling,
+        and multi-turn conversations. Available models include mimo-v2.5-pro,
+        mimo-v2.5, mimo-v2-pro, mimo-v2-omni, mimo-v2-flash, and TTS variants.
+      tags:
+        - Chat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatCompletionRequest'
+      responses:
+        '200':
+          description: Chat completion returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatCompletionResponse'
+        '400':
+          description: Bad request. Invalid parameters.
+        '401':
+          description: Unauthorized. Invalid API key.
+        '429':
+          description: Rate limit exceeded.
+  /v1/models:
+    get:
+      operationId: listModels
+      summary: List Models
+      description: >-
+        Returns a list of available MiMo AI models with their IDs and capabilities.
+      tags:
+        - Models
+      responses:
+        '200':
+          description: List of available models.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelList'
+        '401':
+          description: Unauthorized. Invalid API key.
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-key
+      description: API key obtained from the Xiaomi MiMo console.
+  schemas:
+    ChatMessage:
+      type: object
+      required:
+        - role
+        - content
+      properties:
+        role:
+          type: string
+          enum:
+            - system
+            - user
+            - assistant
+            - tool
+          description: The role of the message author.
+        content:
+          type: string
+          description: The content of the message.
+    ChatCompletionRequest:
+      type: object
+      required:
+        - model
+        - messages
+      properties:
+        model:
+          type: string
+          description: >-
+            The MiMo model to use. Options include: mimo-v2.5-pro, mimo-v2.5,
+            mimo-v2.5-tts, mimo-v2-pro, mimo-v2-omni, mimo-v2-flash.
+          example: mimo-v2.5-pro
+        messages:
+          type: array
+          description: The conversation history as a list of messages.
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+        temperature:
+          type: number
+          minimum: 0
+          maximum: 2
+          description: Sampling temperature. Higher values increase randomness.
+        max_tokens:
+          type: integer
+          description: Maximum number of tokens to generate.
+        stream:
+          type: boolean
+          default: false
+          description: If true, returns partial message deltas via server-sent events.
+        top_p:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Nucleus sampling probability mass.
+    ChatCompletionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique completion identifier.
+        object:
+          type: string
+          example: chat.completion
+        created:
+          type: integer
+          description: Unix timestamp of creation.
+        model:
+          type: string
+          description: Model used for the completion.
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              message:
+                $ref: '#/components/schemas/ChatMessage'
+              finish_reason:
+                type: string
+                enum:
+                  - stop
+                  - length
+                  - tool_calls
+        usage:
+          type: object
+          properties:
+            prompt_tokens:
+              type: integer
+            completion_tokens:
+              type: integer
+            total_tokens:
+              type: integer
+    ModelList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Model identifier.
+              object:
+                type: string
+                example: model
+              created:
+                type: integer
+              owned_by:
+                type: string
+                example: xiaomi

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xiaomi/main/json-schema/xiaomi-chat-completion-schema.json",
+  "title": "Xiaomi MiMo Chat Completion",
+  "description": "Schema for a Xiaomi MiMo AI API chat completion request and response.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the completion."
+    },
+    "object": {
+      "type": "string",
+      "enum": ["chat.completion"],
+      "description": "Object type identifier."
+    },
+    "created": {
+      "type": "integer",
+      "description": "Unix timestamp when the completion was created."
+    },
+    "model": {
+      "type": "string",
+      "description": "The MiMo model used for the completion.",
+      "examples": ["mimo-v2.5-pro", "mimo-v2-flash"]
+    },
+    "choices": {
+      "type": "array",
+      "description": "List of completion choices.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "enum": ["assistant"]
+              },
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": ["role", "content"]
+          },
+          "finish_reason": {
+            "type": "string",
+            "enum": ["stop", "length", "tool_calls"]
+          }
+        }
+      }
+    },
+    "usage": {
+      "type": "object",
+      "properties": {
+        "prompt_tokens": {
+          "type": "integer"
+        },
+        "completion_tokens": {
+          "type": "integer"
+        },
+        "total_tokens": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": ["id", "object", "created", "model", "choices"]
+}

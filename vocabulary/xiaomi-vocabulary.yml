@@ -1,0 +1,136 @@
+vocabulary:
+  name: Xiaomi API Vocabulary
+  description: >-
+    Vocabulary and taxonomy for Xiaomi developer APIs covering IoT, cloud storage,
+    account management, and AI language model services.
+  version: 1.0.0
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+terms:
+  - term: MiMo
+    definition: >-
+      Xiaomi's family of large language models including reasoning, coding,
+      multimodal, and text-to-speech variants. MiMo models are accessible via
+      an OpenAI-compatible API.
+    category: Artificial Intelligence
+    tags:
+      - Language Models
+      - AI
+
+  - term: Galaxy FDS
+    definition: >-
+      Xiaomi Galaxy File Data Storage - a cloud object storage service providing
+      RESTful API access for managing buckets and objects across multiple regional
+      data centers.
+    category: Cloud Storage
+    tags:
+      - Object Storage
+      - Cloud
+
+  - term: Open API
+    definition: >-
+      Xiaomi's OAuth 2.0 based API for accessing user account data, profile
+      information, contact details, and social connections with scope-based
+      authorization.
+    category: Identity
+    tags:
+      - OAuth
+      - Identity
+      - Authentication
+
+  - term: Bucket
+    definition: >-
+      A logical container in Xiaomi Galaxy FDS that stores objects. Buckets are
+      globally unique within a region and can contain many objects.
+    category: Cloud Storage
+    tags:
+      - Object Storage
+
+  - term: Object
+    definition: >-
+      A file or binary data stored in a Xiaomi Galaxy FDS bucket, identified by
+      a unique key/name within the bucket.
+    category: Cloud Storage
+    tags:
+      - Object Storage
+
+  - term: MiliaoId
+    definition: >-
+      The unique numeric identifier assigned to a Xiaomi account user across
+      all Xiaomi services.
+    category: Identity
+    tags:
+      - User Identity
+
+  - term: OpenID
+    definition: >-
+      An application-scoped unique identifier for a Xiaomi user, derived from
+      their MiliaoId and the requesting application's client ID.
+    category: Identity
+    tags:
+      - OAuth
+      - Identity
+
+  - term: HMAC Authentication
+    definition: >-
+      Hash-based message authentication used by Xiaomi Galaxy FDS, where requests
+      are signed using an access key and secret key with HMAC-SHA1.
+    category: Security
+    tags:
+      - Authentication
+      - Security
+
+  - term: Multipart Upload
+    definition: >-
+      A method for uploading large objects to Galaxy FDS in multiple parts,
+      allowing resumable uploads and parallel transfer of chunks.
+    category: Cloud Storage
+    tags:
+      - Object Storage
+      - File Transfer
+
+  - term: ACL
+    definition: >-
+      Access Control List - defines read/write permissions on Galaxy FDS objects
+      and buckets for specific users or groups.
+    category: Security
+    tags:
+      - Access Control
+      - Permissions
+
+  - term: MIUI
+    definition: >-
+      Xiaomi's proprietary Android-based operating system that runs on Xiaomi
+      devices and integrates with Xiaomi's cloud services.
+    category: Platform
+    tags:
+      - Operating System
+      - Mobile
+
+  - term: MiChat
+    definition: >-
+      Xiaomi's messaging application whose friend relationships are accessible
+      via the Open API with the appropriate OAuth scope.
+    category: Social
+    tags:
+      - Messaging
+      - Social Network
+
+  - term: Region
+    definition: >-
+      A physical data center location for Xiaomi Galaxy FDS. Available regions
+      include China Beijing and Singapore.
+    category: Infrastructure
+    tags:
+      - Cloud
+      - Data Center
+
+  - term: Chat Completion
+    definition: >-
+      An AI-generated response from a MiMo model given a conversation history.
+      The response follows the OpenAI chat completions format.
+    category: Artificial Intelligence
+    tags:
+      - Language Models
+      - AI

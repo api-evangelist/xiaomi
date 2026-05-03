@@ -1,0 +1,78 @@
+extends: spectral:oas
+rules:
+  xiaomi-operation-summary-title-case:
+    description: All operation summaries must use Title Case.
+    message: "Operation summary '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*([ ][A-Z][a-zA-Z0-9]*)*$"
+
+  xiaomi-operation-id-camel-case:
+    description: All operationIds must use camelCase.
+    message: "OperationId '{{value}}' must use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  xiaomi-tags-required:
+    description: All operations must have at least one tag.
+    message: "Operation is missing tags."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  xiaomi-response-200-required:
+    description: All operations must define a 200 or 201 response.
+    message: "Operation must define a success (200/201) response."
+    severity: warn
+    given: "$.paths[*][*].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ['200']
+            - required: ['201']
+
+  xiaomi-security-defined:
+    description: All operations must define security requirements.
+    message: "Operation should define security requirements."
+    severity: info
+    given: "$.paths[*][*]"
+    then:
+      field: security
+      function: truthy
+
+  xiaomi-description-required:
+    description: All operations must have a description.
+    message: "Operation is missing a description."
+    severity: warn
+    given: "$.paths[*][*].description"
+    then:
+      function: truthy
+
+  xiaomi-parameter-description:
+    description: All parameters must have descriptions.
+    message: "Parameter '{{value}}' is missing a description."
+    severity: info
+    given: "$.paths[*][*].parameters[*].description"
+    then:
+      function: truthy
+
+  xiaomi-api-version-prefix:
+    description: API paths should be prefixed with a version segment like /v1/.
+    message: "Path '{{property}}' should begin with a version prefix (e.g., /v1/)."
+    severity: info
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v[0-9]+"

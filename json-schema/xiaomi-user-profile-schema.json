@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xiaomi/main/json-schema/xiaomi-user-profile-schema.json",
+  "title": "Xiaomi User Profile",
+  "description": "Schema for a Xiaomi account user profile returned by the Open API.",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "string",
+      "description": "API result status code."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable result description."
+    },
+    "data": {
+      "type": "object",
+      "description": "The user profile data.",
+      "properties": {
+        "nickname": {
+          "type": "string",
+          "description": "User's display name."
+        },
+        "miliaoId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "User's unique Xiaomi account identifier."
+        },
+        "avatarUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the user's profile picture."
+        }
+      },
+      "required": ["miliaoId"]
+    }
+  },
+  "required": ["result", "data"]
+}

@@ -1,0 +1,85 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Xiaomi AI Language Models"
+  description: "Capability for integrating Xiaomi MiMo large language models into applications. Provides access to reasoning, coding, multimodal, and text-to-speech AI capabilities via an OpenAI-compatible API."
+  tags:
+    - Xiaomi
+    - Artificial Intelligence
+    - Language Models
+    - Chat Completions
+    - Machine Learning
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      XIAOMI_MIMO_API_KEY: XIAOMI_MIMO_API_KEY
+
+capability:
+  consumes:
+    - import: xiaomi-mimo-api
+      location: ./shared/xiaomi-mimo-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: xiaomi-ai-api
+      description: "Unified REST API for Xiaomi MiMo AI language model interactions."
+      resources:
+        - path: /v1/chat/completions
+          name: chat-completions
+          description: "Chat completion generation."
+          operations:
+            - method: POST
+              name: create-chat-completion
+              description: "Create a chat completion using Xiaomi MiMo models."
+              call: "xiaomi-mimo-api.create-chat-completion"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/models
+          name: models
+          description: "Available MiMo models."
+          operations:
+            - method: GET
+              name: list-models
+              description: "List available Xiaomi MiMo AI models."
+              call: "xiaomi-mimo-api.list-models"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: xiaomi-ai-mcp
+      transport: http
+      description: "MCP server for AI-assisted integration with Xiaomi MiMo language models."
+      tools:
+        - name: chat-completion
+          description: "Generate a response from Xiaomi MiMo AI models (mimo-v2.5-pro, mimo-v2-flash, etc.)."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "xiaomi-mimo-api.create-chat-completion"
+          with:
+            model: "tools.model"
+            messages: "tools.messages"
+            temperature: "tools.temperature"
+            max_tokens: "tools.max_tokens"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-mimo-models
+          description: "List all available Xiaomi MiMo AI models."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "xiaomi-mimo-api.list-models"
+          outputParameters:
+            - type: object
+              mapping: "$."
