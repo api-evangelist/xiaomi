@@ -1,173 +1,350 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Xiaomi Cloud Storage"
-  description: "Unified capability for Xiaomi cloud storage workflows combining Galaxy FDS object storage with account authentication. Enables developers to authenticate users and manage files in Xiaomi's cloud infrastructure."
+  label: Xiaomi Cloud Storage
+  description: Unified capability for Xiaomi cloud storage workflows combining Galaxy FDS object storage with account authentication.
+    Enables developers to authenticate users and manage files in Xiaomi's cloud infrastructure.
   tags:
-    - Xiaomi
-    - Cloud Storage
-    - Object Storage
-    - Identity
-    - Developer Platform
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Xiaomi
+  - Cloud Storage
+  - Object Storage
+  - Identity
+  - Developer Platform
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      XIAOMI_ACCESS_TOKEN: XIAOMI_ACCESS_TOKEN
-      XIAOMI_CLIENT_ID: XIAOMI_CLIENT_ID
-      XIAOMI_FDS_ACCESS_KEY: XIAOMI_FDS_ACCESS_KEY
-      XIAOMI_FDS_SECRET_KEY: XIAOMI_FDS_SECRET_KEY
-
+- namespace: env
+  keys:
+    XIAOMI_ACCESS_TOKEN: XIAOMI_ACCESS_TOKEN
+    XIAOMI_CLIENT_ID: XIAOMI_CLIENT_ID
+    XIAOMI_FDS_ACCESS_KEY: XIAOMI_FDS_ACCESS_KEY
+    XIAOMI_FDS_SECRET_KEY: XIAOMI_FDS_SECRET_KEY
 capability:
   consumes:
-    - import: xiaomi-open-api
-      location: ./shared/xiaomi-open-api.yaml
-    - import: xiaomi-galaxy-fds
-      location: ./shared/xiaomi-galaxy-fds.yaml
-
+  - type: http
+    namespace: xiaomi-open-api
+    baseUri: https://open.account.xiaomi.com
+    description: Xiaomi OAuth 2.0 user account API.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: Bearer {{XIAOMI_ACCESS_TOKEN}}
+      placement: header
+    resources:
+    - name: user-profile
+      path: /user/profile
+      description: User profile information.
+      operations:
+      - name: get-user-profile
+        method: GET
+        description: Retrieves the authenticated user's profile including nickname, ID, and avatar.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          required: true
+          description: The allocated application client ID.
+        - name: token
+          in: query
+          type: string
+          required: true
+          description: The OAuth 2.0 access token.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-openid
+      path: /user/openidV2
+      description: User unique OpenID.
+      operations:
+      - name: get-user-open-id
+        method: GET
+        description: Retrieves the authenticated user's unique OpenID.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          required: true
+          description: Application client ID.
+        - name: token
+          in: query
+          type: string
+          required: true
+          description: OAuth 2.0 access token.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-contact
+      path: /user/phoneAndEmail
+      description: User phone and email contact information.
+      operations:
+      - name: get-user-phone-and-email
+        method: GET
+        description: Retrieves the user's phone number and email address.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          required: true
+          description: Application client ID.
+        - name: token
+          in: query
+          type: string
+          required: true
+          description: OAuth 2.0 access token.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user-friends
+      path: /user/relation
+      description: User MiChat friend list.
+      operations:
+      - name: get-user-friend-list
+        method: GET
+        description: Retrieves the user's MiChat friend list.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          required: true
+          description: Application client ID.
+        - name: token
+          in: query
+          type: string
+          required: true
+          description: OAuth 2.0 access token.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: xiaomi-galaxy-fds
+    baseUri: https://cnbj0.fds.api.xiaomi.com
+    description: Xiaomi Galaxy FDS object storage REST API.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: Galaxy {{XIAOMI_FDS_ACCESS_KEY}}:{{XIAOMI_FDS_SECRET_KEY}}
+      placement: header
+    resources:
+    - name: objects
+      path: /{bucketName}/{objectName}
+      description: Object operations.
+      operations:
+      - name: put-object
+        method: PUT
+        description: Uploads an object to the specified bucket.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: Target bucket name.
+        - name: objectName
+          in: path
+          type: string
+          required: true
+          description: Object key/name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-object
+        method: GET
+        description: Retrieves an object from the specified bucket.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: Bucket name.
+        - name: objectName
+          in: path
+          type: string
+          required: true
+          description: Object key/name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: head-object
+        method: HEAD
+        description: Retrieves object metadata without the body.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: Bucket name.
+        - name: objectName
+          in: path
+          type: string
+          required: true
+          description: Object key/name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-object
+        method: DELETE
+        description: Deletes the specified object from the bucket.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+          description: Bucket name.
+        - name: objectName
+          in: path
+          type: string
+          required: true
+          description: Object key/name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: xiaomi-cloud-storage-api
-      description: "Unified REST API for Xiaomi cloud storage operations with user authentication."
-      resources:
-        - path: /v1/user/profile
-          name: user-profile
-          description: "Authenticated user profile."
-          operations:
-            - method: GET
-              name: get-user-profile
-              description: "Get the authenticated Xiaomi user's profile."
-              call: "xiaomi-open-api.get-user-profile"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/user/contact
-          name: user-contact
-          description: "User contact information."
-          operations:
-            - method: GET
-              name: get-user-phone-and-email
-              description: "Get user phone number and email address."
-              call: "xiaomi-open-api.get-user-phone-and-email"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/storage/objects/{bucketName}/{objectName}
-          name: storage-objects
-          description: "Object storage operations."
-          operations:
-            - method: PUT
-              name: put-object
-              description: "Upload an object to cloud storage."
-              call: "xiaomi-galaxy-fds.put-object"
-              with:
-                bucketName: "rest.bucketName"
-                objectName: "rest.objectName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: GET
-              name: get-object
-              description: "Download an object from cloud storage."
-              call: "xiaomi-galaxy-fds.get-object"
-              with:
-                bucketName: "rest.bucketName"
-                objectName: "rest.objectName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-object
-              description: "Delete an object from cloud storage."
-              call: "xiaomi-galaxy-fds.delete-object"
-              with:
-                bucketName: "rest.bucketName"
-                objectName: "rest.objectName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: xiaomi-cloud-storage-mcp
-      transport: http
-      description: "MCP server for AI-assisted Xiaomi cloud storage management."
-      tools:
-        - name: get-user-profile
-          description: "Get the authenticated Xiaomi user's profile information."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "xiaomi-open-api.get-user-profile"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-user-contact
-          description: "Get the Xiaomi user's phone number and email address."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "xiaomi-open-api.get-user-phone-and-email"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: upload-object
-          description: "Upload a file or object to Xiaomi Galaxy FDS cloud storage."
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "xiaomi-galaxy-fds.put-object"
-          with:
-            bucketName: "tools.bucketName"
-            objectName: "tools.objectName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: download-object
-          description: "Download a file or object from Xiaomi Galaxy FDS cloud storage."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "xiaomi-galaxy-fds.get-object"
-          with:
-            bucketName: "tools.bucketName"
-            objectName: "tools.objectName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-object-metadata
-          description: "Get metadata for an object in Xiaomi Galaxy FDS without downloading."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "xiaomi-galaxy-fds.head-object"
-          with:
-            bucketName: "tools.bucketName"
-            objectName: "tools.objectName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: delete-object
-          description: "Delete an object from Xiaomi Galaxy FDS cloud storage."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "xiaomi-galaxy-fds.delete-object"
-          with:
-            bucketName: "tools.bucketName"
-            objectName: "tools.objectName"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: xiaomi-cloud-storage-api
+    description: Unified REST API for Xiaomi cloud storage operations with user authentication.
+    resources:
+    - path: /v1/user/profile
+      name: user-profile
+      description: Authenticated user profile.
+      operations:
+      - method: GET
+        name: get-user-profile
+        description: Get the authenticated Xiaomi user's profile.
+        call: xiaomi-open-api.get-user-profile
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/contact
+      name: user-contact
+      description: User contact information.
+      operations:
+      - method: GET
+        name: get-user-phone-and-email
+        description: Get user phone number and email address.
+        call: xiaomi-open-api.get-user-phone-and-email
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/storage/objects/{bucketName}/{objectName}
+      name: storage-objects
+      description: Object storage operations.
+      operations:
+      - method: PUT
+        name: put-object
+        description: Upload an object to cloud storage.
+        call: xiaomi-galaxy-fds.put-object
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get-object
+        description: Download an object from cloud storage.
+        call: xiaomi-galaxy-fds.get-object
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-object
+        description: Delete an object from cloud storage.
+        call: xiaomi-galaxy-fds.delete-object
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: xiaomi-cloud-storage-mcp
+    transport: http
+    description: MCP server for AI-assisted Xiaomi cloud storage management.
+    tools:
+    - name: get-user-profile
+      description: Get the authenticated Xiaomi user's profile information.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: xiaomi-open-api.get-user-profile
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-contact
+      description: Get the Xiaomi user's phone number and email address.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: xiaomi-open-api.get-user-phone-and-email
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-object
+      description: Upload a file or object to Xiaomi Galaxy FDS cloud storage.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: xiaomi-galaxy-fds.put-object
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-object
+      description: Download a file or object from Xiaomi Galaxy FDS cloud storage.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: xiaomi-galaxy-fds.get-object
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-object-metadata
+      description: Get metadata for an object in Xiaomi Galaxy FDS without downloading.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: xiaomi-galaxy-fds.head-object
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-object
+      description: Delete an object from Xiaomi Galaxy FDS cloud storage.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: xiaomi-galaxy-fds.delete-object
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
