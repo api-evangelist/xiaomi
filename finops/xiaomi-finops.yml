@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,145 +9,59 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Xiaomi
 providerId: xiaomi
-publisherName: Xiaomi
-serviceCategory: API
+publisherName: Xiaomi Corporation
+serviceCategory: Consumer Electronics / IoT
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Consumer Electronics
   - IoT
-  - Smart Home
   - Mobile
-  - Artificial Intelligence
-  - Cloud Storage
-  - Machine Learning
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Xiaomi API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: Xiaomi's developer APIs are partner-gated with no public price card, so the
+  FinOps surface is a placeholder pending direct commercial engagement.
+sources:
+  - https://dev.mi.com/
+  - https://developer.xiaomi.com/
+notes: |
+  No public pricing or invoice line-item documentation is available for Xiaomi developer
+  APIs. Meters and FOCUS columns below are minimal placeholders until terms are issued
+  under the Mi developer / partner program.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
-  billingCurrency: USD
+  pricingCategory: Contact Sales
+  billingFrequency: Per-Invoice
+  billingCurrency: USD (settlement varies)
   chargeCategories:
     - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Xiaomi
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Consumer Electronics / IoT
   ProviderName: Xiaomi
-  PublisherName: Xiaomi
-  InvoiceIssuerName: Xiaomi
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Xiaomi Corporation
+  InvoiceIssuerName: Xiaomi Corporation
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
   - name: api_requests
-    description: Count of billable API requests
-    unit: request
+    description: Placeholder request meter; actual billable lines depend on the partner
+      agreement.
+    unit: varies
     aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Xiaomi Open API
-    baseURL: https://open.account.xiaomi.com
-    tags:
-      - Identity
-      - OAuth
-      - Authentication
-      - User Profile
-    serviceName: Xiaomi Open API
-    serviceCategory: API
-  - name: Xiaomi Galaxy FDS API
-    baseURL: https://cnbj0.fds.api.xiaomi.com
-    tags:
-      - Cloud Storage
-      - Object Storage
-      - File Storage
-    serviceName: Xiaomi Galaxy FDS API
-    serviceCategory: API
-  - name: Xiaomi MiMo AI API
-    baseURL: https://api.xiaomimimo.com
-    tags:
-      - Artificial Intelligence
-      - Language Models
-      - Chat Completions
-      - Machine Learning
-    serviceName: Xiaomi MiMo AI API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Until a partner agreement is signed, there is no usage telemetry surface
+      for Xiaomi APIs; rely on internal client-side counters.
+  - name: Allocation
+    description: Tag any client-side calls with consuming team, app, and region so that
+      negotiated commitments can be allocated post-contract.
+  - name: Optimization
+    description: Negotiate volume tiers and regional pricing (CN vs Global) directly during
+      partner onboarding.
+  - name: Accountability
+    description: Spend ownership sits with the business unit signing the Mi partner
+      agreement.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
