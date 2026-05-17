@@ -98,7 +98,7 @@ common:
     url: https://www.mi.com
   - type: Developer Portal
     url: https://dev.mi.com
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/XiaoMi
   - type: SDK
     url: https://github.com/XiaoMi/galaxy-fds-sdk-python
