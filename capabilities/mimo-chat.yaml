@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xiaomi MiMo AI API — Chat
+  description: 'Xiaomi MiMo AI API — Chat. 1 operations. Lead operation: Create Chat Completion. Self-contained Naftiko capability
+    covering one Xiaomi business surface.'
+  tags:
+  - Xiaomi
+  - Chat
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XIAOMI_API_KEY: XIAOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mimo-chat
+    baseUri: https://api.xiaomimimo.com
+    description: Xiaomi MiMo AI API — Chat business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-chat-completions
+      path: /v1/chat/completions
+      operations:
+      - name: createchatcompletion
+        method: POST
+        description: Create Chat Completion
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.XIAOMI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: mimo-chat-rest
+    port: 8080
+    description: REST adapter for Xiaomi MiMo AI API — Chat. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/chat/completions
+      name: v1-chat-completions
+      description: REST surface for v1-chat-completions.
+      operations:
+      - method: POST
+        name: createchatcompletion
+        description: Create Chat Completion
+        call: mimo-chat.createchatcompletion
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mimo-chat-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xiaomi MiMo AI API — Chat. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-chat-completion
+      description: Create Chat Completion
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: mimo-chat.createchatcompletion
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

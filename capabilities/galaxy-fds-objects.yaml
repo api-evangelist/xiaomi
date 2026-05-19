@@ -1,0 +1,362 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xiaomi Galaxy FDS API — Objects
+  description: 'Xiaomi Galaxy FDS API — Objects. 7 operations. Lead operation: Put Object. Self-contained Naftiko capability
+    covering one Xiaomi business surface.'
+  tags:
+  - Xiaomi
+  - Objects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XIAOMI_API_KEY: XIAOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: galaxy-fds-objects
+    baseUri: https://cnbj0.fds.api.xiaomi.com
+    description: Xiaomi Galaxy FDS API — Objects business capability. Self-contained, no shared references.
+    resources:
+    - name: bucketName-objectName
+      path: /{bucketName}/{objectName}
+      operations:
+      - name: putobject
+        method: PUT
+        description: Put Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          description: Name of the target bucket.
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          description: Name/key of the object to upload.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getobject
+        method: GET
+        description: Get Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          description: Name of the bucket.
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          description: Name/key of the object to retrieve.
+          required: true
+      - name: headobject
+        method: HEAD
+        description: Head Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          required: true
+      - name: deleteobject
+        method: DELETE
+        description: Delete Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          required: true
+    - name: bucketName-objectName}?rename
+      path: /{bucketName}/{objectName}?rename
+      operations:
+      - name: renameobject
+        method: POST
+        description: Rename Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          required: true
+        - name: newObjectName
+          in: query
+          type: string
+          description: New name for the object.
+          required: true
+    - name: bucketName-objectName}?restore
+      path: /{bucketName}/{objectName}?restore
+      operations:
+      - name: restoreobject
+        method: POST
+        description: Restore Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          required: true
+    - name: bucketName}?delete
+      path: /{bucketName}?delete
+      operations:
+      - name: deletemultipleobjects
+        method: POST
+        description: Delete Multiple Objects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: galaxy-fds-objects-rest
+    port: 8080
+    description: REST adapter for Xiaomi Galaxy FDS API — Objects. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{bucketname}/{objectname}
+      name: bucketname-objectname
+      description: REST surface for bucketName-objectName.
+      operations:
+      - method: PUT
+        name: putobject
+        description: Put Object
+        call: galaxy-fds-objects.putobject
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getobject
+        description: Get Object
+        call: galaxy-fds-objects.getobject
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: HEAD
+        name: headobject
+        description: Head Object
+        call: galaxy-fds-objects.headobject
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteobject
+        description: Delete Object
+        call: galaxy-fds-objects.deleteobject
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{bucketname}/objectname-rename
+      name: bucketname-objectname-rename
+      description: REST surface for bucketName-objectName}?rename.
+      operations:
+      - method: POST
+        name: renameobject
+        description: Rename Object
+        call: galaxy-fds-objects.renameobject
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+          newObjectName: rest.newObjectName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{bucketname}/objectname-restore
+      name: bucketname-objectname-restore
+      description: REST surface for bucketName-objectName}?restore.
+      operations:
+      - method: POST
+        name: restoreobject
+        description: Restore Object
+        call: galaxy-fds-objects.restoreobject
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/bucketname-delete
+      name: bucketname-delete
+      description: REST surface for bucketName}?delete.
+      operations:
+      - method: POST
+        name: deletemultipleobjects
+        description: Delete Multiple Objects
+        call: galaxy-fds-objects.deletemultipleobjects
+        with:
+          bucketName: rest.bucketName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: galaxy-fds-objects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xiaomi Galaxy FDS API — Objects. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: put-object
+      description: Put Object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: galaxy-fds-objects.putobject
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-object
+      description: Get Object
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: galaxy-fds-objects.getobject
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: head-object
+      description: Head Object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: galaxy-fds-objects.headobject
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-object
+      description: Delete Object
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: galaxy-fds-objects.deleteobject
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rename-object
+      description: Rename Object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: galaxy-fds-objects.renameobject
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+        newObjectName: tools.newObjectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restore-object
+      description: Restore Object
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: galaxy-fds-objects.restoreobject
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-multiple-objects
+      description: Delete Multiple Objects
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: galaxy-fds-objects.deletemultipleobjects
+      with:
+        bucketName: tools.bucketName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

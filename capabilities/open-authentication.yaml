@@ -1,0 +1,94 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xiaomi Open API — Authentication
+  description: 'Xiaomi Open API — Authentication. 1 operations. Lead operation: Verify User Password. Self-contained Naftiko
+    capability covering one Xiaomi business surface.'
+  tags:
+  - Xiaomi
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XIAOMI_API_KEY: XIAOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: open-authentication
+    baseUri: https://open.account.xiaomi.com
+    description: Xiaomi Open API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: checkPassword
+      path: /checkPassword
+      operations:
+      - name: checkuserpassword
+        method: GET
+        description: Verify User Password
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          description: The allocated application client ID.
+          required: true
+        - name: xmUserId
+          in: query
+          type: integer
+          description: The Xiaomi user ID to verify.
+          required: true
+        - name: callback
+          in: query
+          type: string
+          description: HTTPS callback URL for receiving the verification result.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.XIAOMI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: open-authentication-rest
+    port: 8080
+    description: REST adapter for Xiaomi Open API — Authentication. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/checkpassword
+      name: checkpassword
+      description: REST surface for checkPassword.
+      operations:
+      - method: GET
+        name: checkuserpassword
+        description: Verify User Password
+        call: open-authentication.checkuserpassword
+        with:
+          clientId: rest.clientId
+          xmUserId: rest.xmUserId
+          callback: rest.callback
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: open-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xiaomi Open API — Authentication. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: verify-user-password
+      description: Verify User Password
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-authentication.checkuserpassword
+      with:
+        clientId: tools.clientId
+        xmUserId: tools.xmUserId
+        callback: tools.callback
+      outputParameters:
+      - type: object
+        mapping: $.

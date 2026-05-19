@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xiaomi MiMo AI API — Models
+  description: 'Xiaomi MiMo AI API — Models. 1 operations. Lead operation: List Models. Self-contained Naftiko capability
+    covering one Xiaomi business surface.'
+  tags:
+  - Xiaomi
+  - Models
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XIAOMI_API_KEY: XIAOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mimo-models
+    baseUri: https://api.xiaomimimo.com
+    description: Xiaomi MiMo AI API — Models business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-models
+      path: /v1/models
+      operations:
+      - name: listmodels
+        method: GET
+        description: List Models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: api-key
+      value: '{{env.XIAOMI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: mimo-models-rest
+    port: 8080
+    description: REST adapter for Xiaomi MiMo AI API — Models. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/models
+      name: v1-models
+      description: REST surface for v1-models.
+      operations:
+      - method: GET
+        name: listmodels
+        description: List Models
+        call: mimo-models.listmodels
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mimo-models-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xiaomi MiMo AI API — Models. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-models
+      description: List Models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mimo-models.listmodels
+      outputParameters:
+      - type: object
+        mapping: $.

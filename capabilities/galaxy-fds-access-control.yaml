@@ -1,0 +1,169 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xiaomi Galaxy FDS API — Access Control
+  description: 'Xiaomi Galaxy FDS API — Access Control. 3 operations. Lead operation: Put Object ACL. Self-contained Naftiko
+    capability covering one Xiaomi business surface.'
+  tags:
+  - Xiaomi
+  - Access Control
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XIAOMI_API_KEY: XIAOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: galaxy-fds-access-control
+    baseUri: https://cnbj0.fds.api.xiaomi.com
+    description: Xiaomi Galaxy FDS API — Access Control business capability. Self-contained, no shared references.
+    resources:
+    - name: bucketName-objectName}?acl
+      path: /{bucketName}/{objectName}?acl
+      operations:
+      - name: putobjectacl
+        method: PUT
+        description: Put Object ACL
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getobjectacl
+        method: GET
+        description: Get Object ACL
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          required: true
+      - name: deleteobjectacl
+        method: DELETE
+        description: Delete Object ACL
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketName
+          in: path
+          type: string
+          required: true
+        - name: objectName
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: galaxy-fds-access-control-rest
+    port: 8080
+    description: REST adapter for Xiaomi Galaxy FDS API — Access Control. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{bucketname}/objectname-acl
+      name: bucketname-objectname-acl
+      description: REST surface for bucketName-objectName}?acl.
+      operations:
+      - method: PUT
+        name: putobjectacl
+        description: Put Object ACL
+        call: galaxy-fds-access-control.putobjectacl
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getobjectacl
+        description: Get Object ACL
+        call: galaxy-fds-access-control.getobjectacl
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteobjectacl
+        description: Delete Object ACL
+        call: galaxy-fds-access-control.deleteobjectacl
+        with:
+          bucketName: rest.bucketName
+          objectName: rest.objectName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: galaxy-fds-access-control-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xiaomi Galaxy FDS API — Access Control. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: put-object-acl
+      description: Put Object ACL
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: galaxy-fds-access-control.putobjectacl
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-object-acl
+      description: Get Object ACL
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: galaxy-fds-access-control.getobjectacl
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-object-acl
+      description: Delete Object ACL
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: galaxy-fds-access-control.deleteobjectacl
+      with:
+        bucketName: tools.bucketName
+        objectName: tools.objectName
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,234 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xiaomi Open API — User
+  description: 'Xiaomi Open API — User. 4 operations. Lead operation: Get User OpenID. Self-contained Naftiko capability covering
+    one Xiaomi business surface.'
+  tags:
+  - Xiaomi
+  - User
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XIAOMI_API_KEY: XIAOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: open-user
+    baseUri: https://open.account.xiaomi.com
+    description: Xiaomi Open API — User business capability. Self-contained, no shared references.
+    resources:
+    - name: user-openidV2
+      path: /user/openidV2
+      operations:
+      - name: getuseropenid
+        method: GET
+        description: Get User OpenID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          description: The allocated application client ID.
+          required: true
+        - name: token
+          in: query
+          type: string
+          description: The OAuth 2.0 access token.
+          required: true
+    - name: user-phoneAndEmail
+      path: /user/phoneAndEmail
+      operations:
+      - name: getuserphoneandemail
+        method: GET
+        description: Get User Phone and Email
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          description: The allocated application client ID.
+          required: true
+        - name: token
+          in: query
+          type: string
+          description: The OAuth 2.0 access token.
+          required: true
+    - name: user-profile
+      path: /user/profile
+      operations:
+      - name: getuserprofile
+        method: GET
+        description: Get User Profile
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          description: The allocated application client ID.
+          required: true
+        - name: token
+          in: query
+          type: string
+          description: The OAuth 2.0 access token.
+          required: true
+    - name: user-relation
+      path: /user/relation
+      operations:
+      - name: getuserfriendlist
+        method: GET
+        description: Get User Friend List
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clientId
+          in: query
+          type: integer
+          description: The allocated application client ID.
+          required: true
+        - name: token
+          in: query
+          type: string
+          description: The OAuth 2.0 access token.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.XIAOMI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: open-user-rest
+    port: 8080
+    description: REST adapter for Xiaomi Open API — User. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/user/openidv2
+      name: user-openidv2
+      description: REST surface for user-openidV2.
+      operations:
+      - method: GET
+        name: getuseropenid
+        description: Get User OpenID
+        call: open-user.getuseropenid
+        with:
+          clientId: rest.clientId
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/phoneandemail
+      name: user-phoneandemail
+      description: REST surface for user-phoneAndEmail.
+      operations:
+      - method: GET
+        name: getuserphoneandemail
+        description: Get User Phone and Email
+        call: open-user.getuserphoneandemail
+        with:
+          clientId: rest.clientId
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/profile
+      name: user-profile
+      description: REST surface for user-profile.
+      operations:
+      - method: GET
+        name: getuserprofile
+        description: Get User Profile
+        call: open-user.getuserprofile
+        with:
+          clientId: rest.clientId
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user/relation
+      name: user-relation
+      description: REST surface for user-relation.
+      operations:
+      - method: GET
+        name: getuserfriendlist
+        description: Get User Friend List
+        call: open-user.getuserfriendlist
+        with:
+          clientId: rest.clientId
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: open-user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xiaomi Open API — User. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-user-openid
+      description: Get User OpenID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-user.getuseropenid
+      with:
+        clientId: tools.clientId
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-phone-and-email
+      description: Get User Phone and Email
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-user.getuserphoneandemail
+      with:
+        clientId: tools.clientId
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-profile
+      description: Get User Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-user.getuserprofile
+      with:
+        clientId: tools.clientId
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-user-friend-list
+      description: Get User Friend List
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: open-user.getuserfriendlist
+      with:
+        clientId: tools.clientId
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.
