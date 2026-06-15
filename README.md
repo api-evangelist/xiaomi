@@ -1,60 +1,120 @@
-# Xiaomi
+# Xiaomi (xiaomi)
 
-Xiaomi is a multinational technology company headquartered in Beijing, China, that designs, develops, and sells consumer electronics, smart home devices, and related software services. Xiaomi provides developer APIs for account authentication, cloud storage, and AI language models.
+Xiaomi is a multinational technology company headquartered in Beijing, China, that designs, develops, and sells a wide range of consumer electronics and related software services. The company is known for its smartphones, laptops, smart home devices, and other innovative products. Xiaomi offers developer APIs for IoT device control, cloud storage (Galaxy FDS), account/identity (Open API), machine learning (Cloud-ML), and AI language models (MiMo).
 
-**Website:** [https://www.mi.com](https://www.mi.com)  
-**Developer Portal:** [https://dev.mi.com](https://dev.mi.com)  
-**GitHub:** [https://github.com/XiaoMi](https://github.com/XiaoMi)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Consumer Electronics
+- IoT
+- Smart Home
+- Mobile
+- Artificial Intelligence
+- Cloud Storage
+- Machine Learning
+
+## Timestamps
+
+- **Created:** 2025-02-25
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Xiaomi Open API
-OAuth 2.0 based API for accessing Xiaomi user account data including profile, contact information, friend lists, and identity verification.
-- **Documentation:** [https://dev.mi.com/docs/passport/en/open-api/](https://dev.mi.com/docs/passport/en/open-api/)
-- **OpenAPI Spec:** [openapi/xiaomi-open-api-openapi.yml](openapi/xiaomi-open-api-openapi.yml)
+
+The Xiaomi Open API provides OAuth 2.0 based access to user profile data, contact information, friend lists, and identity verification for Xiaomi account holders. It enables third-party applications to integrate Xiaomi account authentication and access authorized user data.
+
+- **Human URL:** [https://dev.mi.com/docs/passport/en/open-api/](https://dev.mi.com/docs/passport/en/open-api/)
+- **Base URL:** `https://open.account.xiaomi.com`
+
+#### Tags
+
+- Identity
+- OAuth
+- Authentication
+- User Profile
+
+#### Properties
+
+- [Documentation](https://dev.mi.com/docs/passport/en/open-api/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/openapi/xiaomi-open-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/xiaomi-galaxy-fds.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-galaxy-fds.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/xiaomi-mimo-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-mimo-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/xiaomi-open-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-open-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Xiaomi Galaxy FDS API
-Cloud object storage REST API for managing buckets and objects with multipart upload, ACL, and CDN capabilities.
-- **Documentation:** [https://docs.api.xiaomi.com/en/fds/](https://docs.api.xiaomi.com/en/fds/)
-- **OpenAPI Spec:** [openapi/xiaomi-galaxy-fds-openapi.yml](openapi/xiaomi-galaxy-fds-openapi.yml)
+
+Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service offering a RESTful API for storing, retrieving, and managing objects and buckets. It supports multipart uploads, access control lists, object lifecycle operations, and CDN prefetch/refresh capabilities.
+
+- **Human URL:** [https://docs.api.xiaomi.com/en/fds/](https://docs.api.xiaomi.com/en/fds/)
+- **Base URL:** `https://cnbj0.fds.api.xiaomi.com`
+
+#### Tags
+
+- Cloud Storage
+- Object Storage
+- File Storage
+
+#### Properties
+
+- [Documentation](https://docs.api.xiaomi.com/en/fds/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/openapi/xiaomi-galaxy-fds-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/xiaomi-galaxy-fds.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-galaxy-fds.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/xiaomi-mimo-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-mimo-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/xiaomi-open-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-open-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Xiaomi MiMo AI API
-OpenAI-compatible API for Xiaomi's MiMo large language models including reasoning, coding, multimodal, and TTS variants.
-- **Documentation:** [https://platform.xiaomimimo.com/docs/api/chat/openai-api](https://platform.xiaomimimo.com/docs/api/chat/openai-api)
-- **OpenAPI Spec:** [openapi/xiaomi-mimo-api-openapi.yml](openapi/xiaomi-mimo-api-openapi.yml)
 
-## Capabilities
+The Xiaomi MiMo AI API provides OpenAI-compatible access to Xiaomi's MiMo large language models, including reasoning, coding, multimodal, and text-to-speech variants. Developers can use the API for chat completions with models such as mimo-v2.5-pro, mimo-v2.5, mimo-v2-omni, and mimo-v2-flash.
 
-### Shared Definitions
-- [capabilities/shared/xiaomi-open-api.yaml](capabilities/shared/xiaomi-open-api.yaml) — User identity and OAuth operations
-- [capabilities/shared/xiaomi-galaxy-fds.yaml](capabilities/shared/xiaomi-galaxy-fds.yaml) — Cloud object storage operations
-- [capabilities/shared/xiaomi-mimo-api.yaml](capabilities/shared/xiaomi-mimo-api.yaml) — MiMo AI model operations
+- **Human URL:** [https://platform.xiaomimimo.com/](https://platform.xiaomimimo.com/)
+- **Base URL:** `https://api.xiaomimimo.com`
 
-### Workflow Capabilities
-- [capabilities/cloud-storage.yaml](capabilities/cloud-storage.yaml) — Cloud storage with user authentication (6 tools)
-- [capabilities/ai-language-models.yaml](capabilities/ai-language-models.yaml) — MiMo AI language model integration (2 tools)
+#### Tags
 
-## Schemas
-- [json-schema/xiaomi-user-profile-schema.json](json-schema/xiaomi-user-profile-schema.json) — User profile schema
-- [json-schema/xiaomi-chat-completion-schema.json](json-schema/xiaomi-chat-completion-schema.json) — Chat completion schema
+- Artificial Intelligence
+- Language Models
+- Chat Completions
+- Machine Learning
 
-## JSON Structures
-- [json-structure/xiaomi-user-profile-structure.json](json-structure/xiaomi-user-profile-structure.json) — User profile structure documentation
+#### Properties
 
-## JSON-LD
-- [json-ld/xiaomi-context.jsonld](json-ld/xiaomi-context.jsonld) — Linked data context
+- [Documentation](https://platform.xiaomimimo.com/docs/api/chat/openai-api)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/openapi/xiaomi-mimo-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/xiaomi-galaxy-fds.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-galaxy-fds.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/xiaomi-mimo-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-mimo-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/xiaomi-open-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/xiaomi-open-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Examples
-- [examples/xiaomi-get-user-profile-example.json](examples/xiaomi-get-user-profile-example.json) — Get user profile request/response
-- [examples/xiaomi-create-chat-completion-example.json](examples/xiaomi-create-chat-completion-example.json) — Create chat completion request/response
+## Common Properties
 
-## Rules
-- [rules/xiaomi-rules.yml](rules/xiaomi-rules.yml) — Spectral ruleset for Xiaomi API conventions
-
-## Vocabulary
-- [vocabulary/xiaomi-vocabulary.yml](vocabulary/xiaomi-vocabulary.yml) — Xiaomi API domain vocabulary
+- [LinkedIn](https://www.linkedin.com/company/xiaomi-technology)
+- [Website](https://www.mi.com)
+- [Developer  Portal](https://dev.mi.com)
+- [GitHub Organization](https://github.com/XiaoMi)
+- [SDK](https://github.com/XiaoMi/galaxy-fds-sdk-python)
+- [SDK](https://github.com/XiaoMi/cloud-ml-sdk)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/json-schema/xiaomi-user-profile-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/json-schema/xiaomi-chat-completion-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/json-ld/xiaomi-context.jsonld)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/vocabulary/xiaomi-vocabulary.yml)
 
 ## Maintainers
 
-**FN:** Kin Lane  
+**FN:** Kin Lane
 **Email:** kin@apievangelist.com

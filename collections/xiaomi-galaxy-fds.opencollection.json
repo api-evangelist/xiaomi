@@ -1,0 +1,447 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xiaomi Galaxy FDS API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the bucket."
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path",
+                "description": "Name/key of the object to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves the content of the specified object from the bucket."
+        },
+        {
+          "info": {
+            "name": "Put Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the target bucket."
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path",
+                "description": "Name/key of the object to upload."
+              }
+            ]
+          },
+          "docs": "Uploads an object to the specified bucket. The request body contains the object content. Supports standard HTTP headers for content type and metadata."
+        },
+        {
+          "info": {
+            "name": "Delete Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes the specified object from the bucket."
+        },
+        {
+          "info": {
+            "name": "Head Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves metadata for the specified object without returning the body."
+        },
+        {
+          "info": {
+            "name": "Delete Multiple Objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName?delete",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes multiple objects from the bucket in a single request."
+        },
+        {
+          "info": {
+            "name": "Restore Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?restore",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Restores an archived object for temporary access."
+        },
+        {
+          "info": {
+            "name": "Rename Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?rename",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "newObjectName",
+                "value": "",
+                "type": "query",
+                "description": "New name for the object."
+              }
+            ]
+          },
+          "docs": "Renames an object within the bucket."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access Control",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Object ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?acl",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the access control list for the specified object."
+        },
+        {
+          "info": {
+            "name": "Put Object ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?acl",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the access control list for the specified object."
+        },
+        {
+          "info": {
+            "name": "Delete Object ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?acl",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes the access control list for the specified object."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Multipart Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate Multipart Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?uploads",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Initiates a multipart upload session and returns an upload ID."
+        },
+        {
+          "info": {
+            "name": "Upload Part",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?partNumber=:partNumber&uploadId=:uploadId",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "partNumber",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Uploads a single part in a multipart upload session."
+        },
+        {
+          "info": {
+            "name": "Complete Multipart Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?uploadId=:uploadId",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Completes the multipart upload by assembling all parts."
+        },
+        {
+          "info": {
+            "name": "Abort Multipart Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?uploadId=:uploadId",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Aborts and cleans up an in-progress multipart upload."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CDN",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Prefetch Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?prefetch",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Pre-caches the specified object in the CDN edge nodes."
+        },
+        {
+          "info": {
+            "name": "Refresh Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?refresh",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refreshes the CDN cache for the specified object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xiaomi Open API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://account.xiaomi.com/oauth2/authorize",
+      "accessTokenUrl": "https://account.xiaomi.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open.account.xiaomi.com/user/profile",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The allocated application client ID."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 access token."
+              }
+            ]
+          },
+          "docs": "Retrieves the authenticated user's profile information including nickname, user ID, and profile picture URL. Requires OAuth scope 1."
+        },
+        {
+          "info": {
+            "name": "Get User OpenID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open.account.xiaomi.com/user/openidV2",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The allocated application client ID."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 access token."
+              }
+            ]
+          },
+          "docs": "Retrieves the authenticated user's unique OpenID for the application. Requires OAuth scope 3."
+        },
+        {
+          "info": {
+            "name": "Get User Phone and Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open.account.xiaomi.com/user/phoneAndEmail",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The allocated application client ID."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 access token."
+              }
+            ]
+          },
+          "docs": "Retrieves the authenticated user's phone number and email address. Fields may be empty if the user has not provided them. Requires OAuth scope 4 or 6."
+        },
+        {
+          "info": {
+            "name": "Get User Friend List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open.account.xiaomi.com/user/relation",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The allocated application client ID."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 access token."
+              }
+            ]
+          },
+          "docs": "Retrieves the authenticated user's MiChat friend list. Requires OAuth scope 2."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify User Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://open.account.xiaomi.com/checkPassword",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The allocated application client ID."
+              },
+              {
+                "name": "xmUserId",
+                "value": "",
+                "type": "query",
+                "description": "The Xiaomi user ID to verify."
+              },
+              {
+                "name": "callback",
+                "value": "",
+                "type": "query",
+                "description": "HTTPS callback URL for receiving the verification result."
+              }
+            ]
+          },
+          "docs": "Triggers a password verification flow for the specified Xiaomi user. Sends a callback to the provided HTTPS URL with the verification result and authorization code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
