@@ -86,13 +86,13 @@ common:
     url: https://www.linkedin.com/company/xiaomi-technology
   - type: Website
     url: https://www.mi.com
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://dev.mi.com
   - type: GitHubOrganization
     url: https://github.com/XiaoMi
-  - type: SDK
+  - type: SDKs
     url: https://github.com/XiaoMi/galaxy-fds-sdk-python
-  - type: SDK
+  - type: SDKs
     url: https://github.com/XiaoMi/cloud-ml-sdk
   - type: JSONSchema
     url: >-
