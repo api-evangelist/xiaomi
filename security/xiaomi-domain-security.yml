@@ -1,0 +1,32 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.mi.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Mar  6 23:59:59 2027 GMT
+  hsts: null
+- host: dev.mi.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Oct 28 23:59:59 2026 GMT
+  hsts: null
+- host: open.account.xiaomi.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Sep 16 01:53:07 2026 GMT
+  hsts: null
+domains:
+- domain: mi.com
+  dnssec: true
+  caa:
+  - sgp.ali.cdn.b2cop.lb.mi.com.
+  spf: true
+  dmarc: false
+- domain: xiaomi.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

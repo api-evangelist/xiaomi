@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://trust.mi.com/
+url: https://trust.mi.com/
+certifications:
+- GDPR
+evidence:
+- source: https://trust.mi.com/
+  keywords:
+  - trust center
+  - gdpr

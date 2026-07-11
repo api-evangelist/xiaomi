@@ -1,0 +1,36 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/xiaomi-galaxy-fds-openapi.yml, openapi/xiaomi-mimo-api-openapi.yml, openapi/xiaomi-open-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: hmacAuth
+  type: http
+  scheme: custom
+  description: HMAC-based signature authentication. Requests must include a Date header and
+    Authorization header with HMAC-SHA1 signature.
+  sources:
+  - openapi/xiaomi-galaxy-fds-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: api-key
+  description: API key obtained from the Xiaomi MiMo console.
+  sources:
+  - openapi/xiaomi-mimo-api-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://account.xiaomi.com/oauth2/authorize
+    tokenUrl: https://account.xiaomi.com/oauth2/token
+    scopes: 5
+  sources:
+  - openapi/xiaomi-open-api-openapi.yml
