@@ -82,6 +82,10 @@ apis:
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/xiaomi/refs/heads/main/openapi/xiaomi-mimo-api-openapi.yml
 common:
+  - type: Authentication
+    url: authentication/xiaomi-authentication.yml
+  - type: OAuthScopes
+    url: scopes/xiaomi-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/xiaomi-technology
   - type: Website

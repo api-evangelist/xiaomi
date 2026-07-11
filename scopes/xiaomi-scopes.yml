@@ -1,0 +1,41 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/xiaomi-open-api-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/xiaomi-open-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://account.xiaomi.com/oauth2/authorize
+    tokenUrl: https://account.xiaomi.com/oauth2/token
+scopes:
+- scope: '1'
+  description: Access user profile (nickname, ID, avatar)
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/xiaomi-open-api-openapi.yml
+- scope: '2'
+  description: Access user friend list (MiChat)
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/xiaomi-open-api-openapi.yml
+- scope: '3'
+  description: Access user OpenID
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/xiaomi-open-api-openapi.yml
+- scope: '4'
+  description: Access user phone number
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/xiaomi-open-api-openapi.yml
+- scope: '6'
+  description: Access user email address
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/xiaomi-open-api-openapi.yml
