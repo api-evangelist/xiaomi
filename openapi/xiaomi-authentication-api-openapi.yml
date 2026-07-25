@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: Xiaomi Galaxy FDS Access Control Authentication API
+  description: Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.
+  version: 1.0.0
+  contact:
+    name: Xiaomi FDS Support
+    url: https://docs.api.xiaomi.com/en/fds/
+servers:
+- url: https://cnbj0.fds.api.xiaomi.com
+  description: China Beijing region
+- url: https://awsbj0.fds.api.xiaomi.com
+  description: China Beijing region (AWS)
+- url: https://awssgp0.fds.api.xiaomi.com
+  description: Singapore region
+security:
+- hmacAuth: []
+tags:
+- name: Authentication
+paths:
+  /checkPassword:
+    get:
+      operationId: checkUserPassword
+      summary: Verify User Password
+      description: Triggers a password verification flow for the specified Xiaomi user. Sends a callback to the provided HTTPS URL with the verification result and authorization code.
+      tags:
+      - Authentication
+      parameters:
+      - name: clientId
+        in: query
+        required: true
+        description: The allocated application client ID.
+        schema:
+          type: integer
+          format: int64
+      - name: xmUserId
+        in: query
+        required: true
+        description: The Xiaomi user ID to verify.
+        schema:
+          type: integer
+          format: int64
+      - name: callback
+        in: query
+        required: true
+        description: HTTPS callback URL for receiving the verification result.
+        schema:
+          type: string
+          format: uri
+      responses:
+        '200':
+          description: Password check initiated. Result sent to callback URL.
+        '400':
+          description: Bad request. Invalid parameters.
+components:
+  securitySchemes:
+    hmacAuth:
+      type: http
+      scheme: custom
+      description: HMAC-based signature authentication. Requests must include a Date header and Authorization header with HMAC-SHA1 signature.

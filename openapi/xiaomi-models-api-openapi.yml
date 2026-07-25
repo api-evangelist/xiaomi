@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Xiaomi Galaxy FDS Access Control Models API
+  description: Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.
+  version: 1.0.0
+  contact:
+    name: Xiaomi FDS Support
+    url: https://docs.api.xiaomi.com/en/fds/
+servers:
+- url: https://cnbj0.fds.api.xiaomi.com
+  description: China Beijing region
+- url: https://awsbj0.fds.api.xiaomi.com
+  description: China Beijing region (AWS)
+- url: https://awssgp0.fds.api.xiaomi.com
+  description: Singapore region
+security:
+- hmacAuth: []
+tags:
+- name: Models
+paths:
+  /v1/models:
+    get:
+      operationId: listModels
+      summary: List Models
+      description: Returns a list of available MiMo AI models with their IDs and capabilities.
+      tags:
+      - Models
+      responses:
+        '200':
+          description: List of available models.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelList'
+        '401':
+          description: Unauthorized. Invalid API key.
+components:
+  schemas:
+    ModelList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Model identifier.
+              object:
+                type: string
+                example: model
+              created:
+                type: integer
+              owned_by:
+                type: string
+                example: xiaomi
+  securitySchemes:
+    hmacAuth:
+      type: http
+      scheme: custom
+      description: HMAC-based signature authentication. Requests must include a Date header and Authorization header with HMAC-SHA1 signature.

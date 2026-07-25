@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: Xiaomi Galaxy FDS Access Control API
+  description: Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.
+  version: 1.0.0
+  contact:
+    name: Xiaomi FDS Support
+    url: https://docs.api.xiaomi.com/en/fds/
+servers:
+- url: https://cnbj0.fds.api.xiaomi.com
+  description: China Beijing region
+- url: https://awsbj0.fds.api.xiaomi.com
+  description: China Beijing region (AWS)
+- url: https://awssgp0.fds.api.xiaomi.com
+  description: Singapore region
+security:
+- hmacAuth: []
+tags:
+- name: Access Control
+paths:
+  /{bucketName}/{objectName}?acl:
+    put:
+      operationId: putObjectAcl
+      summary: Put Object ACL
+      description: Sets the access control list for the specified object.
+      tags:
+      - Access Control
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AclRequest'
+      responses:
+        '200':
+          description: ACL updated successfully.
+    get:
+      operationId: getObjectAcl
+      summary: Get Object ACL
+      description: Retrieves the access control list for the specified object.
+      tags:
+      - Access Control
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ACL returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AclResponse'
+    delete:
+      operationId: deleteObjectAcl
+      summary: Delete Object ACL
+      description: Removes the access control list for the specified object.
+      tags:
+      - Access Control
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ACL deleted successfully.
+components:
+  schemas:
+    AclResponse:
+      type: object
+      properties:
+        owner:
+          type: string
+        grants:
+          type: array
+          items:
+            type: object
+            properties:
+              grantee:
+                type: string
+              permission:
+                type: string
+    AclRequest:
+      type: object
+      properties:
+        grants:
+          type: array
+          items:
+            type: object
+            properties:
+              grantee:
+                type: string
+              permission:
+                type: string
+                enum:
+                - READ
+                - WRITE
+                - FULL_CONTROL
+  securitySchemes:
+    hmacAuth:
+      type: http
+      scheme: custom
+      description: HMAC-based signature authentication. Requests must include a Date header and Authorization header with HMAC-SHA1 signature.

@@ -1,0 +1,239 @@
+openapi: 3.0.3
+info:
+  title: Xiaomi Galaxy FDS Access Control Objects API
+  description: Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.
+  version: 1.0.0
+  contact:
+    name: Xiaomi FDS Support
+    url: https://docs.api.xiaomi.com/en/fds/
+servers:
+- url: https://cnbj0.fds.api.xiaomi.com
+  description: China Beijing region
+- url: https://awsbj0.fds.api.xiaomi.com
+  description: China Beijing region (AWS)
+- url: https://awssgp0.fds.api.xiaomi.com
+  description: Singapore region
+security:
+- hmacAuth: []
+tags:
+- name: Objects
+paths:
+  /{bucketName}/{objectName}:
+    put:
+      operationId: putObject
+      summary: Put Object
+      description: Uploads an object to the specified bucket. The request body contains the object content. Supports standard HTTP headers for content type and metadata.
+      tags:
+      - Objects
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        description: Name of the target bucket.
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        description: Name/key of the object to upload.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Object uploaded successfully.
+        '403':
+          description: Forbidden. Authentication or permission error.
+        '404':
+          description: Bucket not found.
+    get:
+      operationId: getObject
+      summary: Get Object
+      description: Retrieves the content of the specified object from the bucket.
+      tags:
+      - Objects
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        description: Name of the bucket.
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        description: Name/key of the object to retrieve.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Object content returned.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Object or bucket not found.
+    head:
+      operationId: headObject
+      summary: Head Object
+      description: Retrieves metadata for the specified object without returning the body.
+      tags:
+      - Objects
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Object metadata returned in headers.
+        '404':
+          description: Object not found.
+    delete:
+      operationId: deleteObject
+      summary: Delete Object
+      description: Removes the specified object from the bucket.
+      tags:
+      - Objects
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Object deleted successfully.
+        '404':
+          description: Object or bucket not found.
+  /{bucketName}?delete:
+    post:
+      operationId: deleteMultipleObjects
+      summary: Delete Multiple Objects
+      description: Deletes multiple objects from the bucket in a single request.
+      tags:
+      - Objects
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteMultipleRequest'
+      responses:
+        '200':
+          description: Objects deletion results returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteMultipleResponse'
+  /{bucketName}/{objectName}?restore:
+    post:
+      operationId: restoreObject
+      summary: Restore Object
+      description: Restores an archived object for temporary access.
+      tags:
+      - Objects
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Object restore initiated.
+  /{bucketName}/{objectName}?rename:
+    post:
+      operationId: renameObject
+      summary: Rename Object
+      description: Renames an object within the bucket.
+      tags:
+      - Objects
+      parameters:
+      - name: bucketName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: objectName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: newObjectName
+        in: query
+        required: true
+        description: New name for the object.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Object renamed successfully.
+components:
+  schemas:
+    DeleteMultipleResponse:
+      type: object
+      properties:
+        deleted:
+          type: array
+          items:
+            type: object
+            properties:
+              objectName:
+                type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              objectName:
+                type: string
+              errorCode:
+                type: string
+              errorMessage:
+                type: string
+    DeleteMultipleRequest:
+      type: object
+      properties:
+        objects:
+          type: array
+          items:
+            type: object
+            properties:
+              objectName:
+                type: string
+  securitySchemes:
+    hmacAuth:
+      type: http
+      scheme: custom
+      description: HMAC-based signature authentication. Requests must include a Date header and Authorization header with HMAC-SHA1 signature.
