@@ -1,0 +1,28 @@
+{
+  "provider": "xiaomi",
+  "sources": [
+    "xiaomi-access-control-api-openapi.yml",
+    "xiaomi-authentication-api-openapi.yml",
+    "xiaomi-cdn-api-openapi.yml",
+    "xiaomi-chat-api-openapi.yml",
+    "xiaomi-models-api-openapi.yml",
+    "xiaomi-multipart-upload-api-openapi.yml",
+    "xiaomi-objects-api-openapi.yml",
+    "xiaomi-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "xiaomi-access-control-api-openapi.yml",
+    "xiaomi-authentication-api-openapi.yml",
+    "xiaomi-cdn-api-openapi.yml",
+    "xiaomi-chat-api-openapi.yml",
+    "xiaomi-models-api-openapi.yml",
+    "xiaomi-multipart-upload-api-openapi.yml",
+    "xiaomi-objects-api-openapi.yml",
+    "xiaomi-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

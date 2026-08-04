@@ -1,0 +1,273 @@
+openapi: 3.0.3
+info:
+  title: Xiaomi Open API
+  description: >-
+    The Xiaomi Open API provides OAuth 2.0 based access to Xiaomi user account
+    data including profile information, contact details, friend lists, and identity
+    verification. Third-party applications can integrate Xiaomi account login and
+    access authorized user data via scope-based permissions.
+  version: 1.0.0
+  contact:
+    name: Xiaomi Developer Support
+    url: https://dev.mi.com
+  termsOfService: https://dev.mi.com/docs/passport/en/
+servers:
+  - url: https://open.account.xiaomi.com
+    description: Xiaomi Open Account API
+security:
+  - oauth2: []
+paths:
+  /user/profile:
+    get:
+      operationId: getUserProfile
+      summary: Get User Profile
+      description: >-
+        Retrieves the authenticated user's profile information including nickname,
+        user ID, and profile picture URL. Requires OAuth scope 1.
+      tags:
+        - User
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          description: The allocated application client ID.
+          schema:
+            type: integer
+            format: int64
+        - name: token
+          in: query
+          required: true
+          description: The OAuth 2.0 access token.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User profile retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '401':
+          description: Unauthorized. Invalid or expired access token.
+        '403':
+          description: Forbidden. Insufficient scope permissions.
+  /user/openidV2:
+    get:
+      operationId: getUserOpenId
+      summary: Get User OpenID
+      description: >-
+        Retrieves the authenticated user's unique OpenID for the application.
+        Requires OAuth scope 3.
+      tags:
+        - User
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          description: The allocated application client ID.
+          schema:
+            type: integer
+            format: int64
+        - name: token
+          in: query
+          required: true
+          description: The OAuth 2.0 access token.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User OpenID retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserOpenId'
+        '401':
+          description: Unauthorized. Invalid or expired access token.
+  /user/phoneAndEmail:
+    get:
+      operationId: getUserPhoneAndEmail
+      summary: Get User Phone and Email
+      description: >-
+        Retrieves the authenticated user's phone number and email address.
+        Fields may be empty if the user has not provided them. Requires OAuth scope 4 or 6.
+      tags:
+        - User
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          description: The allocated application client ID.
+          schema:
+            type: integer
+            format: int64
+        - name: token
+          in: query
+          required: true
+          description: The OAuth 2.0 access token.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User contact information retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserContact'
+        '401':
+          description: Unauthorized. Invalid or expired access token.
+  /user/relation:
+    get:
+      operationId: getUserFriendList
+      summary: Get User Friend List
+      description: >-
+        Retrieves the authenticated user's MiChat friend list. Requires OAuth scope 2.
+      tags:
+        - User
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          description: The allocated application client ID.
+          schema:
+            type: integer
+            format: int64
+        - name: token
+          in: query
+          required: true
+          description: The OAuth 2.0 access token.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Friend list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendList'
+        '401':
+          description: Unauthorized. Invalid or expired access token.
+  /checkPassword:
+    get:
+      operationId: checkUserPassword
+      summary: Verify User Password
+      description: >-
+        Triggers a password verification flow for the specified Xiaomi user.
+        Sends a callback to the provided HTTPS URL with the verification result
+        and authorization code.
+      tags:
+        - Authentication
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          description: The allocated application client ID.
+          schema:
+            type: integer
+            format: int64
+        - name: xmUserId
+          in: query
+          required: true
+          description: The Xiaomi user ID to verify.
+          schema:
+            type: integer
+            format: int64
+        - name: callback
+          in: query
+          required: true
+          description: HTTPS callback URL for receiving the verification result.
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: Password check initiated. Result sent to callback URL.
+        '400':
+          description: Bad request. Invalid parameters.
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://account.xiaomi.com/oauth2/authorize
+          tokenUrl: https://account.xiaomi.com/oauth2/token
+          scopes:
+            '1': Access user profile (nickname, ID, avatar)
+            '2': Access user friend list (MiChat)
+            '3': Access user OpenID
+            '4': Access user phone number
+            '6': Access user email address
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result status code.
+        description:
+          type: string
+          description: Result description.
+        data:
+          type: object
+          properties:
+            nickname:
+              type: string
+              description: User's display name.
+            miliaoId:
+              type: integer
+              format: int64
+              description: User's unique Xiaomi account ID.
+            avatarUrl:
+              type: string
+              format: uri
+              description: URL to the user's profile picture.
+    UserOpenId:
+      type: object
+      properties:
+        result:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+          properties:
+            openId:
+              type: string
+              description: Application-scoped unique user identifier.
+    UserContact:
+      type: object
+      properties:
+        result:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+          properties:
+            phone:
+              type: string
+              description: User's phone number (may be empty).
+            email:
+              type: string
+              format: email
+              description: User's email address (may be empty).
+    FriendList:
+      type: object
+      properties:
+        result:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+          properties:
+            friends:
+              type: array
+              items:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                    format: int64
+                  nickname:
+                    type: string
