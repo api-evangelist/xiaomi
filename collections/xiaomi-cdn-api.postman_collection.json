@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "897e0110-e954-46e6-b8f4-82896497de13",
+      "name": "CDN",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b01bd3cb-0345-40ac-8c9a-00dbfd0b87c2",
+          "name": "Prefetch Object",
+          "request": {
+            "name": "Prefetch Object",
+            "description": {
+              "content": "Pre-caches the specified object in the CDN edge nodes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "prefetch",
+                  "value": "null"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0fbe9c83-7650-4b38-b6f7-97ccb6cbd326",
+              "name": "CDN prefetch initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c399decc-4ffa-4979-b2a6-d620fc8bdd9b",
+          "name": "Refresh Object",
+          "request": {
+            "name": "Refresh Object",
+            "description": {
+              "content": "Refreshes the CDN cache for the specified object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "refresh",
+                  "value": "null"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85be0368-5f27-4103-801d-f4849035a869",
+              "name": "CDN cache refresh initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cnbj0.fds.api.xiaomi.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "objectName"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ba9d3ca-7b73-440e-8c5b-296dd1ecb3c6",
+    "name": "Xiaomi Galaxy FDS Access Control CDN API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.\n\nContact Support:\n Name: Xiaomi FDS Support",
+      "type": "text/plain"
+    }
+  }
+}

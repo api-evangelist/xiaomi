@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xiaomi Galaxy FDS Access Control CDN API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CDN",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Prefetch Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?prefetch",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Pre-caches the specified object in the CDN edge nodes."
+        },
+        {
+          "info": {
+            "name": "Refresh Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?refresh",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refreshes the CDN cache for the specified object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

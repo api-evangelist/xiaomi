@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xiaomi Galaxy FDS Access Control Multipart Upload API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Multipart Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initiate Multipart Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?uploads",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Initiates a multipart upload session and returns an upload ID."
+        },
+        {
+          "info": {
+            "name": "Upload Part",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?partNumber=:partNumber&uploadId=:uploadId",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "partNumber",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Uploads a single part in a multipart upload session."
+        },
+        {
+          "info": {
+            "name": "Complete Multipart Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?uploadId=:uploadId",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Completes the multipart upload by assembling all parts."
+        },
+        {
+          "info": {
+            "name": "Abort Multipart Upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?uploadId=:uploadId",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Aborts and cleans up an in-progress multipart upload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

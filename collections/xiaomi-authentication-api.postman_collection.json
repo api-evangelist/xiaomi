@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "d2f4b25a-fb70-4a52-bb2a-2f99923d9dbc",
+      "name": "Authentication",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8b97e3f-6da9-47a6-a409-d34395b5cfde",
+          "name": "Verify User Password",
+          "request": {
+            "name": "Verify User Password",
+            "description": {
+              "content": "Triggers a password verification flow for the specified Xiaomi user. Sends a callback to the provided HTTPS URL with the verification result and authorization code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "checkPassword"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<long>",
+                  "description": "(Required) The allocated application client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "xmUserId",
+                  "value": "<long>",
+                  "description": "(Required) The Xiaomi user ID to verify."
+                },
+                {
+                  "disabled": false,
+                  "key": "callback",
+                  "value": "<uri>",
+                  "description": "(Required) HTTPS callback URL for receiving the verification result."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ddcbcad-8c5e-4710-8b99-85bfc33d6b09",
+              "name": "Password check initiated. Result sent to callback URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkPassword"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "xmUserId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e49bbc85-7971-4219-ac2a-83f6bd1a432b",
+              "name": "Bad request. Invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkPassword"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "xmUserId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "callback",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cnbj0.fds.api.xiaomi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0d43937c-092d-4c0f-926e-52bd223e0287",
+    "name": "Xiaomi Galaxy FDS Access Control Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.\n\nContact Support:\n Name: Xiaomi FDS Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,436 @@
+{
+  "item": [
+    {
+      "id": "a92e32df-c112-401d-ac26-8a8fc4aacbe8",
+      "name": "Multipart Upload",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f4f2813-90fa-405e-9f86-24c7d70a42fe",
+          "name": "Initiate Multipart Upload",
+          "request": {
+            "name": "Initiate Multipart Upload",
+            "description": {
+              "content": "Initiates a multipart upload session and returns an upload ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "uploads",
+                  "value": "null"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ebbe0fa-6c5c-4d49-91b2-cb933e6f2b7c",
+              "name": "Multipart upload initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bucketName\": \"string\",\n  \"objectName\": \"string\",\n  \"uploadId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f8bfcdc-4a32-43d4-9708-6e2138b5e8af",
+          "name": "Upload Part",
+          "request": {
+            "name": "Upload Part",
+            "description": {
+              "content": "Uploads a single part in a multipart upload session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "partNumber",
+                  "value": "{{partNumber}}"
+                },
+                {
+                  "key": "uploadId",
+                  "value": "{{uploadId}}"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "912b6c91-a739-43a0-ab3b-1a7a1b7925ac",
+              "name": "Part uploaded successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff9bba7b-c0cd-4771-a315-c52df9ec5a40",
+          "name": "Complete Multipart Upload",
+          "request": {
+            "name": "Complete Multipart Upload",
+            "description": {
+              "content": "Completes the multipart upload by assembling all parts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "uploadId",
+                  "value": "{{uploadId}}"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parts\": [\n    {\n      \"partNumber\": \"<integer>\",\n      \"etag\": \"<string>\"\n    },\n    {\n      \"partNumber\": \"<integer>\",\n      \"etag\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1242b89c-d2c7-4aeb-9984-b3a4da80800d",
+              "name": "Multipart upload completed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"parts\": [\n    {\n      \"partNumber\": \"<integer>\",\n      \"etag\": \"<string>\"\n    },\n    {\n      \"partNumber\": \"<integer>\",\n      \"etag\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cda9dd5a-c0ef-4132-abf0-664da7b51718",
+          "name": "Abort Multipart Upload",
+          "request": {
+            "name": "Abort Multipart Upload",
+            "description": {
+              "content": "Aborts and cleans up an in-progress multipart upload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "uploadId",
+                  "value": "{{uploadId}}"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcec184d-ed25-42eb-bcfd-266e64e197bf",
+              "name": "Multipart upload aborted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cnbj0.fds.api.xiaomi.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "objectName"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "partNumber"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "uploadId"
+    }
+  ],
+  "info": {
+    "_postman_id": "4e25f142-1b4c-438a-b6c4-d0fb24b71004",
+    "name": "Xiaomi Galaxy FDS Access Control Multipart Upload API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.\n\nContact Support:\n Name: Xiaomi FDS Support",
+      "type": "text/plain"
+    }
+  }
+}

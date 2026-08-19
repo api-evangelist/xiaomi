@@ -1,0 +1,603 @@
+{
+  "item": [
+    {
+      "id": "592f8746-0c1d-465b-9500-295a83d91169",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43e7fd2f-3ed6-4eb4-a089-2915bfd3c605",
+          "name": "Get User Profile",
+          "request": {
+            "name": "Get User Profile",
+            "description": {
+              "content": "Retrieves the authenticated user's profile information including nickname, user ID, and profile picture URL. Requires OAuth scope 1.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<long>",
+                  "description": "(Required) The allocated application client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth 2.0 access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e0248ec-42b8-4651-9854-5d33285dc0b2",
+              "name": "User profile retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"description\": \"string\",\n  \"data\": {\n    \"nickname\": \"string\",\n    \"miliaoId\": 806,\n    \"avatarUrl\": \"https://Helfy.kyD8rcWRg7gO\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "688d412e-6a81-4aea-bede-92fb03c5b966",
+              "name": "Unauthorized. Invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7b1140f-90ca-44a2-9ca6-039f87094704",
+              "name": "Forbidden. Insufficient scope permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a61516a-def1-488c-a07a-3e12c1fdd633",
+          "name": "Get User OpenID",
+          "request": {
+            "name": "Get User OpenID",
+            "description": {
+              "content": "Retrieves the authenticated user's unique OpenID for the application. Requires OAuth scope 3.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "openidV2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<long>",
+                  "description": "(Required) The allocated application client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth 2.0 access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44cbb3e8-cf78-4c25-8ac1-ae3dd88c2187",
+              "name": "User OpenID retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "openidV2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"description\": \"string\",\n  \"data\": {\n    \"openId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2aea5bf8-b7c7-4ee7-a29e-41e9e534864a",
+              "name": "Unauthorized. Invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "openidV2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "526965cc-87d7-469b-b5fb-6b024bce0f2d",
+          "name": "Get User Phone and Email",
+          "request": {
+            "name": "Get User Phone and Email",
+            "description": {
+              "content": "Retrieves the authenticated user's phone number and email address. Fields may be empty if the user has not provided them. Requires OAuth scope 4 or 6.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "phoneAndEmail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<long>",
+                  "description": "(Required) The allocated application client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth 2.0 access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95022c47-0571-4990-8f1a-ba6a58b0c657",
+              "name": "User contact information retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "phoneAndEmail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"description\": \"string\",\n  \"data\": {\n    \"phone\": \"string\",\n    \"email\": \"ro8p-Qjd@JKOUkgUSBelO.kui\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1544558-8053-44b6-b26e-4ddde7eb3300",
+              "name": "Unauthorized. Invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "phoneAndEmail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "467cc239-8301-450a-b310-fc6bb5df0c54",
+          "name": "Get User Friend List",
+          "request": {
+            "name": "Get User Friend List",
+            "description": {
+              "content": "Retrieves the authenticated user's MiChat friend list. Requires OAuth scope 2.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "user",
+                "relation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<long>",
+                  "description": "(Required) The allocated application client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth 2.0 access token."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72a686b4-61cc-402c-93a8-0332bd2aad40",
+              "name": "Friend list retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "relation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": \"string\",\n  \"description\": \"string\",\n  \"data\": {\n    \"friends\": [\n      {\n        \"userId\": 55,\n        \"nickname\": \"string\"\n      },\n      {\n        \"userId\": 7271,\n        \"nickname\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55b93223-3025-4ede-bc50-fa549b5b1126",
+              "name": "Unauthorized. Invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    "relation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "clientId",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cnbj0.fds.api.xiaomi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "afbcc503-4ee0-44ce-92d0-22ec33f53133",
+    "name": "Xiaomi Galaxy FDS Access Control User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.\n\nContact Support:\n Name: Xiaomi FDS Support",
+      "type": "text/plain"
+    }
+  }
+}

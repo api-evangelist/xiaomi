@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xiaomi Galaxy FDS Access Control API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Control",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Object ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?acl",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the access control list for the specified object."
+        },
+        {
+          "info": {
+            "name": "Put Object ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?acl",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the access control list for the specified object."
+        },
+        {
+          "info": {
+            "name": "Delete Object ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cnbj0.fds.api.xiaomi.com/:bucketName/:objectName?acl",
+            "params": [
+              {
+                "name": "bucketName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "objectName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes the access control list for the specified object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

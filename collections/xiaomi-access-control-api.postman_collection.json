@@ -1,0 +1,320 @@
+{
+  "item": [
+    {
+      "id": "c140be28-700c-4bb6-935d-0dddc3cd856c",
+      "name": "Access Control",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0caea53b-6205-4706-ad87-2ed143243b49",
+          "name": "Put Object ACL",
+          "request": {
+            "name": "Put Object ACL",
+            "description": {
+              "content": "Sets the access control list for the specified object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "acl",
+                  "value": "null"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grants\": [\n    {\n      \"grantee\": \"<string>\",\n      \"permission\": \"<string>\"\n    },\n    {\n      \"grantee\": \"<string>\",\n      \"permission\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48b54518-7239-4a2e-84d2-589f6614b688",
+              "name": "ACL updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grants\": [\n    {\n      \"grantee\": \"<string>\",\n      \"permission\": \"<string>\"\n    },\n    {\n      \"grantee\": \"<string>\",\n      \"permission\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77d117d8-a523-4dff-8724-b0709bdd1215",
+          "name": "Get Object ACL",
+          "request": {
+            "name": "Get Object ACL",
+            "description": {
+              "content": "Retrieves the access control list for the specified object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "acl",
+                  "value": "null"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27fc9dcd-5971-47ba-9302-2a6774af7be7",
+              "name": "ACL returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"owner\": \"string\",\n  \"grants\": [\n    {\n      \"grantee\": \"string\",\n      \"permission\": \"string\"\n    },\n    {\n      \"grantee\": \"string\",\n      \"permission\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2befdd37-7711-4eca-aa14-48aff9ee65dc",
+          "name": "Delete Object ACL",
+          "request": {
+            "name": "Delete Object ACL",
+            "description": {
+              "content": "Removes the access control list for the specified object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":bucketName",
+                "{{objectName}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "acl",
+                  "value": "null"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "bucketName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f6511e9-9508-4ebf-88dd-9129851803d0",
+              "name": "ACL deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":bucketName",
+                    "{{objectName}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "bucketName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cnbj0.fds.api.xiaomi.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "objectName"
+    }
+  ],
+  "info": {
+    "_postman_id": "b1fc6473-5aa0-4657-bd55-02d8f90f9a54",
+    "name": "Xiaomi Galaxy FDS Access Control API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.\n\nContact Support:\n Name: Xiaomi FDS Support",
+      "type": "text/plain"
+    }
+  }
+}
