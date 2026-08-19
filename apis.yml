@@ -36,7 +36,7 @@ description: >-
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: xiaomi:xiaomi-access-control-api
   name: Xiaomi Access Control API
