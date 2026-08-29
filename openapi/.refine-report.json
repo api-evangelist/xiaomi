@@ -1,28 +1,45 @@
 {
   "provider": "xiaomi",
   "sources": [
-    "xiaomi-access-control-api-openapi.yml",
-    "xiaomi-authentication-api-openapi.yml",
-    "xiaomi-cdn-api-openapi.yml",
-    "xiaomi-chat-api-openapi.yml",
-    "xiaomi-models-api-openapi.yml",
-    "xiaomi-multipart-upload-api-openapi.yml",
-    "xiaomi-objects-api-openapi.yml",
-    "xiaomi-user-api-openapi.yml"
+    "_original/xiaomi-galaxy-fds-openapi.yml",
+    "_original/xiaomi-mimo-api-openapi.yml",
+    "_original/xiaomi-open-api-openapi.yml"
   ],
   "outputs": [
     "xiaomi-access-control-api-openapi.yml",
-    "xiaomi-authentication-api-openapi.yml",
     "xiaomi-cdn-api-openapi.yml",
-    "xiaomi-chat-api-openapi.yml",
-    "xiaomi-models-api-openapi.yml",
     "xiaomi-multipart-upload-api-openapi.yml",
     "xiaomi-objects-api-openapi.yml",
+    "xiaomi-chat-api-openapi.yml",
+    "xiaomi-models-api-openapi.yml",
+    "xiaomi-authentication-api-openapi.yml",
     "xiaomi-user-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "xiaomi-galaxy-fds-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaomi-galaxy-fds-openapi.yml: declared missing tag: Access Control",
+    "xiaomi-galaxy-fds-openapi.yml: declared missing tag: CDN",
+    "xiaomi-galaxy-fds-openapi.yml: declared missing tag: Multipart Upload",
+    "xiaomi-galaxy-fds-openapi.yml: declared missing tag: Objects",
+    "xiaomi-mimo-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaomi-mimo-api-openapi.yml: declared missing tag: Chat",
+    "xiaomi-mimo-api-openapi.yml: declared missing tag: Models",
+    "xiaomi-open-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "xiaomi-open-api-openapi.yml: declared missing tag: Authentication",
+    "xiaomi-open-api-openapi.yml: declared missing tag: User"
+  ],
+  "skipped": [
+    "xiaomi-access-control-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-cdn-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-multipart-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

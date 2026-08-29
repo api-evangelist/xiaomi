@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Xiaomi Galaxy FDS Access Control Multipart Upload API
+  title: Xiaomi Galaxy FDS Multipart Upload API
   description: Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.
   version: 1.0.0
   contact:
@@ -140,15 +140,6 @@ paths:
           description: Multipart upload aborted.
 components:
   schemas:
-    InitiateMultipartResponse:
-      type: object
-      properties:
-        bucketName:
-          type: string
-        objectName:
-          type: string
-        uploadId:
-          type: string
     CompleteMultipartRequest:
       type: object
       properties:
@@ -161,6 +152,15 @@ components:
                 type: integer
               etag:
                 type: string
+    InitiateMultipartResponse:
+      type: object
+      properties:
+        bucketName:
+          type: string
+        objectName:
+          type: string
+        uploadId:
+          type: string
   securitySchemes:
     hmacAuth:
       type: http

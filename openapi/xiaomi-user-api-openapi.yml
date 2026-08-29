@@ -1,20 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Xiaomi Galaxy FDS Access Control User API
-  description: Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.
+  title: Xiaomi Open User API
+  description: The Xiaomi Open API provides OAuth 2.0 based access to Xiaomi user account data including profile information, contact details, friend lists, and identity verification. Third-party applications can integrate Xiaomi account login and access authorized user data via scope-based permissions.
   version: 1.0.0
   contact:
-    name: Xiaomi FDS Support
-    url: https://docs.api.xiaomi.com/en/fds/
+    name: Xiaomi Developer Support
+    url: https://dev.mi.com
+  termsOfService: https://dev.mi.com/docs/passport/en/
 servers:
-- url: https://cnbj0.fds.api.xiaomi.com
-  description: China Beijing region
-- url: https://awsbj0.fds.api.xiaomi.com
-  description: China Beijing region (AWS)
-- url: https://awssgp0.fds.api.xiaomi.com
-  description: Singapore region
+- url: https://open.account.xiaomi.com
+  description: Xiaomi Open Account API
 security:
-- hmacAuth: []
+- oauth2: []
 tags:
 - name: User
 paths:
@@ -142,6 +139,29 @@ paths:
           description: Unauthorized. Invalid or expired access token.
 components:
   schemas:
+    UserProfile:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result status code.
+        description:
+          type: string
+          description: Result description.
+        data:
+          type: object
+          properties:
+            nickname:
+              type: string
+              description: User's display name.
+            miliaoId:
+              type: integer
+              format: int64
+              description: User's unique Xiaomi account ID.
+            avatarUrl:
+              type: string
+              format: uri
+              description: URL to the user's profile picture.
     FriendList:
       type: object
       properties:
@@ -175,29 +195,6 @@ components:
             openId:
               type: string
               description: Application-scoped unique user identifier.
-    UserProfile:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result status code.
-        description:
-          type: string
-          description: Result description.
-        data:
-          type: object
-          properties:
-            nickname:
-              type: string
-              description: User's display name.
-            miliaoId:
-              type: integer
-              format: int64
-              description: User's unique Xiaomi account ID.
-            avatarUrl:
-              type: string
-              format: uri
-              description: URL to the user's profile picture.
     UserContact:
       type: object
       properties:
@@ -216,7 +213,15 @@ components:
               format: email
               description: User's email address (may be empty).
   securitySchemes:
-    hmacAuth:
-      type: http
-      scheme: custom
-      description: HMAC-based signature authentication. Requests must include a Date header and Authorization header with HMAC-SHA1 signature.
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://account.xiaomi.com/oauth2/authorize
+          tokenUrl: https://account.xiaomi.com/oauth2/token
+          scopes:
+            '1': Access user profile (nickname, ID, avatar)
+            '2': Access user friend list (MiChat)
+            '3': Access user OpenID
+            '4': Access user phone number
+            '6': Access user email address

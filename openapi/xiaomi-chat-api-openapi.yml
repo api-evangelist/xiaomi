@@ -1,20 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Xiaomi Galaxy FDS Access Control Chat API
-  description: Xiaomi Galaxy File Data Storage (FDS) is a cloud object storage service providing a RESTful API for managing files and objects. It supports bucket management, object CRUD operations, access control lists, multipart uploads, and CDN prefetch/refresh operations across multiple regional data centers.
+  title: Xiaomi MiMo AI Chat API
+  description: The Xiaomi MiMo AI API provides OpenAI-compatible access to Xiaomi's MiMo large language model family. Supports chat completions with reasoning, coding, multimodal, and text-to-speech model variants. Compatible with OpenAI SDKs and standard tooling.
   version: 1.0.0
   contact:
-    name: Xiaomi FDS Support
-    url: https://docs.api.xiaomi.com/en/fds/
+    name: Xiaomi MiMo Developer
+    url: https://platform.xiaomimimo.com/
 servers:
-- url: https://cnbj0.fds.api.xiaomi.com
-  description: China Beijing region
-- url: https://awsbj0.fds.api.xiaomi.com
-  description: China Beijing region (AWS)
-- url: https://awssgp0.fds.api.xiaomi.com
-  description: Singapore region
+- url: https://api.xiaomimimo.com
+  description: Xiaomi MiMo AI API
 security:
-- hmacAuth: []
+- apiKeyAuth: []
 tags:
 - name: Chat
 paths:
@@ -46,38 +42,6 @@ paths:
           description: Rate limit exceeded.
 components:
   schemas:
-    ChatCompletionRequest:
-      type: object
-      required:
-      - model
-      - messages
-      properties:
-        model:
-          type: string
-          description: 'The MiMo model to use. Options include: mimo-v2.5-pro, mimo-v2.5, mimo-v2.5-tts, mimo-v2-pro, mimo-v2-omni, mimo-v2-flash.'
-          example: mimo-v2.5-pro
-        messages:
-          type: array
-          description: The conversation history as a list of messages.
-          items:
-            $ref: '#/components/schemas/ChatMessage'
-        temperature:
-          type: number
-          minimum: 0
-          maximum: 2
-          description: Sampling temperature. Higher values increase randomness.
-        max_tokens:
-          type: integer
-          description: Maximum number of tokens to generate.
-        stream:
-          type: boolean
-          default: false
-          description: If true, returns partial message deltas via server-sent events.
-        top_p:
-          type: number
-          minimum: 0
-          maximum: 1
-          description: Nucleus sampling probability mass.
     ChatCompletionResponse:
       type: object
       properties:
@@ -134,8 +98,41 @@ components:
         content:
           type: string
           description: The content of the message.
+    ChatCompletionRequest:
+      type: object
+      required:
+      - model
+      - messages
+      properties:
+        model:
+          type: string
+          description: 'The MiMo model to use. Options include: mimo-v2.5-pro, mimo-v2.5, mimo-v2.5-tts, mimo-v2-pro, mimo-v2-omni, mimo-v2-flash.'
+          example: mimo-v2.5-pro
+        messages:
+          type: array
+          description: The conversation history as a list of messages.
+          items:
+            $ref: '#/components/schemas/ChatMessage'
+        temperature:
+          type: number
+          minimum: 0
+          maximum: 2
+          description: Sampling temperature. Higher values increase randomness.
+        max_tokens:
+          type: integer
+          description: Maximum number of tokens to generate.
+        stream:
+          type: boolean
+          default: false
+          description: If true, returns partial message deltas via server-sent events.
+        top_p:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Nucleus sampling probability mass.
   securitySchemes:
-    hmacAuth:
-      type: http
-      scheme: custom
-      description: HMAC-based signature authentication. Requests must include a Date header and Authorization header with HMAC-SHA1 signature.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-key
+      description: API key obtained from the Xiaomi MiMo console.
