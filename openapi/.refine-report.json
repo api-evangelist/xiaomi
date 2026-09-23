@@ -30,7 +30,8 @@
     "xiaomi-mimo-api-openapi.yml: declared missing tag: Models",
     "xiaomi-open-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "xiaomi-open-api-openapi.yml: declared missing tag: Authentication",
-    "xiaomi-open-api-openapi.yml: declared missing tag: User"
+    "xiaomi-open-api-openapi.yml: declared missing tag: User",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "xiaomi-access-control-api-openapi.yml: previously refined output, superseded by openapi/_original/",

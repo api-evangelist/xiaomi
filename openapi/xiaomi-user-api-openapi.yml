@@ -162,6 +162,23 @@ components:
               type: string
               format: uri
               description: URL to the user's profile picture.
+    UserContact:
+      type: object
+      properties:
+        result:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+          properties:
+            phone:
+              type: string
+              description: User's phone number (may be empty).
+            email:
+              type: string
+              format: email
+              description: User's email address (may be empty).
     FriendList:
       type: object
       properties:
@@ -195,23 +212,6 @@ components:
             openId:
               type: string
               description: Application-scoped unique user identifier.
-    UserContact:
-      type: object
-      properties:
-        result:
-          type: string
-        description:
-          type: string
-        data:
-          type: object
-          properties:
-            phone:
-              type: string
-              description: User's phone number (may be empty).
-            email:
-              type: string
-              format: email
-              description: User's email address (may be empty).
   securitySchemes:
     oauth2:
       type: oauth2
