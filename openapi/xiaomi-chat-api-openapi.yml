@@ -42,6 +42,45 @@ paths:
           description: Rate limit exceeded.
 components:
   schemas:
+    ChatCompletionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique completion identifier.
+        object:
+          type: string
+          example: chat.completion
+        created:
+          type: integer
+          description: Unix timestamp of creation.
+        model:
+          type: string
+          description: Model used for the completion.
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              index:
+                type: integer
+              message:
+                $ref: '#/components/schemas/ChatMessage'
+              finish_reason:
+                type: string
+                enum:
+                - stop
+                - length
+                - tool_calls
+        usage:
+          type: object
+          properties:
+            prompt_tokens:
+              type: integer
+            completion_tokens:
+              type: integer
+            total_tokens:
+              type: integer
     ChatCompletionRequest:
       type: object
       required:
@@ -91,45 +130,6 @@ components:
         content:
           type: string
           description: The content of the message.
-    ChatCompletionResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique completion identifier.
-        object:
-          type: string
-          example: chat.completion
-        created:
-          type: integer
-          description: Unix timestamp of creation.
-        model:
-          type: string
-          description: Model used for the completion.
-        choices:
-          type: array
-          items:
-            type: object
-            properties:
-              index:
-                type: integer
-              message:
-                $ref: '#/components/schemas/ChatMessage'
-              finish_reason:
-                type: string
-                enum:
-                - stop
-                - length
-                - tool_calls
-        usage:
-          type: object
-          properties:
-            prompt_tokens:
-              type: integer
-            completion_tokens:
-              type: integer
-            total_tokens:
-              type: integer
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -8,7 +8,7 @@ tags:
   - Mobile
   - Artificial Intelligence
   - Cloud Storage
-  - Machine-Learning
+  - Machine Learning
 tags_raw:
   - Consumer Electronics
   - IoT
@@ -17,6 +17,7 @@ tags_raw:
   - Artificial Intelligence
   - Cloud Storage
   - Machine Learning
+  - Machine-Learning
 type: Index
 deliveryModel:
   model: unknown
