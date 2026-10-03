@@ -201,16 +201,6 @@ paths:
           description: Object renamed successfully.
 components:
   schemas:
-    DeleteMultipleRequest:
-      type: object
-      properties:
-        objects:
-          type: array
-          items:
-            type: object
-            properties:
-              objectName:
-                type: string
     DeleteMultipleResponse:
       type: object
       properties:
@@ -231,6 +221,16 @@ components:
               errorCode:
                 type: string
               errorMessage:
+                type: string
+    DeleteMultipleRequest:
+      type: object
+      properties:
+        objects:
+          type: array
+          items:
+            type: object
+            properties:
+              objectName:
                 type: string
   securitySchemes:
     hmacAuth:

@@ -140,6 +140,15 @@ paths:
           description: Multipart upload aborted.
 components:
   schemas:
+    InitiateMultipartResponse:
+      type: object
+      properties:
+        bucketName:
+          type: string
+        objectName:
+          type: string
+        uploadId:
+          type: string
     CompleteMultipartRequest:
       type: object
       properties:
@@ -152,15 +161,6 @@ components:
                 type: integer
               etag:
                 type: string
-    InitiateMultipartResponse:
-      type: object
-      properties:
-        bucketName:
-          type: string
-        objectName:
-          type: string
-        uploadId:
-          type: string
   securitySchemes:
     hmacAuth:
       type: http

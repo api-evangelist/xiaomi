@@ -139,6 +139,49 @@ paths:
           description: Unauthorized. Invalid or expired access token.
 components:
   schemas:
+    UserProfile:
+      type: object
+      properties:
+        result:
+          type: string
+          description: Result status code.
+        description:
+          type: string
+          description: Result description.
+        data:
+          type: object
+          properties:
+            nickname:
+              type: string
+              description: User's display name.
+            miliaoId:
+              type: integer
+              format: int64
+              description: User's unique Xiaomi account ID.
+            avatarUrl:
+              type: string
+              format: uri
+              description: URL to the user's profile picture.
+    FriendList:
+      type: object
+      properties:
+        result:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+          properties:
+            friends:
+              type: array
+              items:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                    format: int64
+                  nickname:
+                    type: string
     UserContact:
       type: object
       properties:
@@ -169,49 +212,6 @@ components:
             openId:
               type: string
               description: Application-scoped unique user identifier.
-    FriendList:
-      type: object
-      properties:
-        result:
-          type: string
-        description:
-          type: string
-        data:
-          type: object
-          properties:
-            friends:
-              type: array
-              items:
-                type: object
-                properties:
-                  userId:
-                    type: integer
-                    format: int64
-                  nickname:
-                    type: string
-    UserProfile:
-      type: object
-      properties:
-        result:
-          type: string
-          description: Result status code.
-        description:
-          type: string
-          description: Result description.
-        data:
-          type: object
-          properties:
-            nickname:
-              type: string
-              description: User's display name.
-            miliaoId:
-              type: integer
-              format: int64
-              description: User's unique Xiaomi account ID.
-            avatarUrl:
-              type: string
-              format: uri
-              description: URL to the user's profile picture.
   securitySchemes:
     oauth2:
       type: oauth2
