@@ -12,7 +12,7 @@ servers:
 security:
 - apiKeyAuth: []
 tags:
-- name: Chat
+- name: Chat Completions
 paths:
   /v1/chat/completions:
     post:
@@ -20,7 +20,7 @@ paths:
       summary: Create Chat Completion
       description: Creates a chat completion response from the specified MiMo model. The API is OpenAI-compatible and supports streaming, function calling, and multi-turn conversations. Available models include mimo-v2.5-pro, mimo-v2.5, mimo-v2-pro, mimo-v2-omni, mimo-v2-flash, and TTS variants.
       tags:
-      - Chat
+      - Chat Completions
       requestBody:
         required: true
         content:
@@ -42,6 +42,23 @@ paths:
           description: Rate limit exceeded.
 components:
   schemas:
+    ChatMessage:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - system
+          - user
+          - assistant
+          - tool
+          description: The role of the message author.
+        content:
+          type: string
+          description: The content of the message.
     ChatCompletionResponse:
       type: object
       properties:
@@ -81,23 +98,6 @@ components:
               type: integer
             total_tokens:
               type: integer
-    ChatMessage:
-      type: object
-      required:
-      - role
-      - content
-      properties:
-        role:
-          type: string
-          enum:
-          - system
-          - user
-          - assistant
-          - tool
-          description: The role of the message author.
-        content:
-          type: string
-          description: The content of the message.
     ChatCompletionRequest:
       type: object
       required:

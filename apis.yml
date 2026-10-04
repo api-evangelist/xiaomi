@@ -106,22 +106,6 @@ apis:
     url: https://docs.api.xiaomi.com/en/fds/
   - type: Documentation
     url: https://platform.xiaomimimo.com/docs/api/chat/openai-api
-- aid: xiaomi:xiaomi-chat-api
-  name: Xiaomi Chat API
-  description: The Chat API from Xiaomi — 1 operation(s) for chat.
-  humanURL: https://dev.mi.com/docs/passport/en/open-api/
-  baseURL: https://open.account.xiaomi.com
-  tags:
-  - Chat
-  properties:
-  - type: OpenAPI
-    url: openapi/xiaomi-chat-api-openapi.yml
-  - type: Documentation
-    url: https://dev.mi.com/docs/passport/en/open-api/
-  - type: Documentation
-    url: https://docs.api.xiaomi.com/en/fds/
-  - type: Documentation
-    url: https://platform.xiaomimimo.com/docs/api/chat/openai-api
 - aid: xiaomi:xiaomi-models-api
   name: Xiaomi Models API
   description: The Models API from Xiaomi — 1 operation(s) for models.
@@ -180,6 +164,22 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/xiaomi-user-api-openapi.yml
+  - type: Documentation
+    url: https://dev.mi.com/docs/passport/en/open-api/
+  - type: Documentation
+    url: https://docs.api.xiaomi.com/en/fds/
+  - type: Documentation
+    url: https://platform.xiaomimimo.com/docs/api/chat/openai-api
+- aid: xiaomi:xiaomi-chat-completions-api
+  name: Xiaomi Chat Completions API
+  description: The Chat Completions API from Xiaomi — 1 operation(s) for chat completions.
+  humanURL: https://dev.mi.com/docs/passport/en/open-api/
+  baseURL: https://open.account.xiaomi.com
+  tags:
+  - Chat Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/xiaomi-chat-completions-api-openapi.yml
   - type: Documentation
     url: https://dev.mi.com/docs/passport/en/open-api/
   - type: Documentation

@@ -91,20 +91,6 @@ paths:
           description: ACL deleted successfully.
 components:
   schemas:
-    AclResponse:
-      type: object
-      properties:
-        owner:
-          type: string
-        grants:
-          type: array
-          items:
-            type: object
-            properties:
-              grantee:
-                type: string
-              permission:
-                type: string
     AclRequest:
       type: object
       properties:
@@ -121,6 +107,20 @@ components:
                 - READ
                 - WRITE
                 - FULL_CONTROL
+    AclResponse:
+      type: object
+      properties:
+        owner:
+          type: string
+        grants:
+          type: array
+          items:
+            type: object
+            properties:
+              grantee:
+                type: string
+              permission:
+                type: string
   securitySchemes:
     hmacAuth:
       type: http
