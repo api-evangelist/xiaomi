@@ -187,6 +187,12 @@ apis:
   - type: Documentation
     url: https://platform.xiaomimimo.com/docs/api/chat/openai-api
 common:
+  - type: Plans
+    url: plans/xiaomi-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/xiaomi-rate-limits.yml
+  - type: FinOps
+    url: finops/xiaomi-finops.yml
   - type: AgenticAccess
     url: agentic-access/xiaomi-agentic-access.yml
   - type: TrustCenter
