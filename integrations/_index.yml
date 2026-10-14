@@ -112,3 +112,53 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
+- slug: xiaomi-connectivity-standards-alliance-matter
+  label: Connectivity Standards Alliance (Matter)
+  partner_name: Connectivity Standards Alliance (Matter)
+  category: Matter certified products
+  type: contract
+  channel: standard-directory
+  evidence: https://on.dcl.csa-iot.org/dcl/vendorinfo/vendors/4718
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CSA Distributed Compliance Ledger (Matter certification)
+    spec_file: null
+    standard: Matter
+    role: Matter certified vendor
+    vendor_id: 4718
+    registered_name: Xiaomi
+    legal_name: Xiaomi Communications Co., Ltd.
+    landing_page: https://iot.mi.com
+    identity_source: vendorLandingPageURL
+    matched_domain: mi.com
+    matched_by: domain
+    certified_models: 3
+    certified_products:
+    - product: Door Lock
+      device_type_id: 10
+      models: 2
+      revoked_models: 0
+      latest_certification: '2025-09-10'
+      transports:
+      - bluetooth
+      - thread
+      examples:
+      - Xiaomi Self-Install Smart Lock
+      lapsed: false
+    - product: Extended Color Light
+      device_type_id: 269
+      models: 1
+      revoked_models: 0
+      latest_certification: '2024-10-30'
+      transports:
+      - bluetooth
+      - wi-fi
+      examples:
+      - Xiaomi Smart LED Bulb
+      lapsed: false
+    signal_note: certified_products = one entry per device type (diversity), not per model
+    detected_by: sweep-iot.py
+    detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null
