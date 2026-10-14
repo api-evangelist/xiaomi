@@ -85,9 +85,68 @@ edges:
     detected: '2026-10-13'
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
+- partner_name: IAB Europe TCF Global Vendor List
+  partner: null
+  partner_match: domain
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://vendor-list.consensu.org/v3/vendor-list.json
+  contract_reference:
+    register: IAB Europe TCF Global Vendor List
+    spec_file: null
+    role: tcf-vendor
+    registered_name: Xiaomi Technologies Singapore Pte. Ltd.,
+    register_id: '1613'
+    products:
+    - Xiaomi Technologies Singapore Pte. Ltd.,
+    matched_domain: mi.com
+    api_families:
+    - feature-1
+    - purpose-1
+    - purpose-10
+    - purpose-2
+    - purpose-3
+    - purpose-4
+    - purpose-7
+    - special-purpose-1
+    - special-purpose-2
+    - special-purpose-3
+    api_families_basis: TCF purposes, special purposes, features and special features declared on the registration
+    detected_by: sweep-adtech.py
+    detected: '2026-10-14'
+  detected_by: sweep-adtech.py
+  detected: '2026-10-14'
+- partner_name: Google Ad Tech Providers
+  partner: null
+  partner_match: domain
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://storage.googleapis.com/tcfac/additional-consent-providers.csv
+  contract_reference:
+    register: Google Ad Tech Providers (Additional Consent)
+    spec_file: null
+    role: google-atp
+    registered_name: Xiaomi DSP
+    register_id: '3324'
+    products:
+    - Xiaomi DSP
+    matched_domain: mi.com
+    api_families: null
+    api_families_basis: null
+    detected_by: sweep-adtech.py
+    detected: '2026-10-14'
+  detected_by: sweep-adtech.py
+  detected: '2026-10-14'
 generated: '2026-10-13'
 method: searched
 checked:
 - https://api.llmgateway.io/v1/models
 - https://github.com/BerriAI/litellm/blob/main/model_prices_and_context_window.json
 - https://openrouter.ai/api/v1/models
+- https://storage.googleapis.com/tcfac/additional-consent-providers.csv
+- https://vendor-list.consensu.org/v3/vendor-list.json
+marketplace_apps: []
