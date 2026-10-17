@@ -15,7 +15,9 @@
     "xiaomi-authentication-api-openapi.yml",
     "xiaomi-user-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -31,13 +33,14 @@
     "xiaomi-open-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "xiaomi-open-api-openapi.yml: declared missing tag: Authentication",
     "xiaomi-open-api-openapi.yml: declared missing tag: User",
-    "apis.yml register: already-registered"
+    "superseded outputs removed: xiaomi-chat-completions-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 8 total)"
   ],
   "skipped": [
     "xiaomi-access-control-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "xiaomi-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "xiaomi-cdn-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "xiaomi-chat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xiaomi-chat-completions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "xiaomi-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "xiaomi-multipart-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "xiaomi-objects-api-openapi.yml: previously refined output, superseded by openapi/_original/",

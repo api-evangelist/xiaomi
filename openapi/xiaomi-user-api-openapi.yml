@@ -139,39 +139,6 @@ paths:
           description: Unauthorized. Invalid or expired access token.
 components:
   schemas:
-    UserOpenId:
-      type: object
-      properties:
-        result:
-          type: string
-        description:
-          type: string
-        data:
-          type: object
-          properties:
-            openId:
-              type: string
-              description: Application-scoped unique user identifier.
-    FriendList:
-      type: object
-      properties:
-        result:
-          type: string
-        description:
-          type: string
-        data:
-          type: object
-          properties:
-            friends:
-              type: array
-              items:
-                type: object
-                properties:
-                  userId:
-                    type: integer
-                    format: int64
-                  nickname:
-                    type: string
     UserContact:
       type: object
       properties:
@@ -212,6 +179,39 @@ components:
               type: string
               format: uri
               description: URL to the user's profile picture.
+    UserOpenId:
+      type: object
+      properties:
+        result:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+          properties:
+            openId:
+              type: string
+              description: Application-scoped unique user identifier.
+    FriendList:
+      type: object
+      properties:
+        result:
+          type: string
+        description:
+          type: string
+        data:
+          type: object
+          properties:
+            friends:
+              type: array
+              items:
+                type: object
+                properties:
+                  userId:
+                    type: integer
+                    format: int64
+                  nickname:
+                    type: string
   securitySchemes:
     oauth2:
       type: oauth2
