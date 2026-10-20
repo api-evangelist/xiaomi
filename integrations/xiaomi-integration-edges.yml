@@ -1,51 +1,4 @@
 edges:
-- partner_name: Connectivity Standards Alliance (Matter)
-  partner: null
-  type: contract
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://on.dcl.csa-iot.org/dcl/vendorinfo/vendors/4718
-  category: Matter certified products
-  contract_reference:
-    register: CSA Distributed Compliance Ledger (Matter certification)
-    spec_file: null
-    standard: Matter
-    role: Matter certified vendor
-    vendor_id: 4718
-    registered_name: Xiaomi
-    legal_name: Xiaomi Communications Co., Ltd.
-    landing_page: https://iot.mi.com
-    identity_source: vendorLandingPageURL
-    matched_domain: mi.com
-    matched_by: domain
-    certified_models: 3
-    certified_products:
-    - product: Door Lock
-      device_type_id: 10
-      models: 2
-      revoked_models: 0
-      latest_certification: '2025-09-10'
-      transports:
-      - bluetooth
-      - thread
-      examples:
-      - Xiaomi Self-Install Smart Lock
-      lapsed: false
-    - product: Extended Color Light
-      device_type_id: 269
-      models: 1
-      revoked_models: 0
-      latest_certification: '2024-10-30'
-      transports:
-      - bluetooth
-      - wi-fi
-      examples:
-      - Xiaomi Smart LED Bulb
-      lapsed: false
-    signal_note: certified_products = one entry per device type (diversity), not per model
-    detected_by: sweep-iot.py
-    detected: '2026-10-14'
 - partner_name: IAB Europe TCF Global Vendor List
   partner: null
   partner_match: domain
@@ -102,6 +55,63 @@ edges:
     detected: '2026-10-14'
   detected_by: sweep-adtech.py
   detected: '2026-10-14'
+- partner_name: Connectivity Standards Alliance (Matter)
+  partner: null
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://on.dcl.csa-iot.org/dcl/vendorinfo/vendors/4718
+  category: Matter certified products
+  contract_reference:
+    register: CSA Distributed Compliance Ledger (Matter certification)
+    spec_file: null
+    standard: Matter
+    role: Matter certified vendor
+    vendor_id: 4718
+    registered_name: Xiaomi
+    legal_name: Xiaomi Communications Co., Ltd.
+    landing_page: https://iot.mi.com
+    identity_source: vendorLandingPageURL
+    matched_domain: mi.com
+    matched_by: domain
+    certified_models: 4
+    certified_products:
+    - product: Door Lock
+      device_type_id: 10
+      models: 2
+      revoked_models: 0
+      latest_certification: '2025-09-10'
+      transports:
+      - bluetooth
+      - thread
+      examples:
+      - Xiaomi Self-Install Smart Lock
+      lapsed: false
+    - product: Extended Color Light
+      device_type_id: 269
+      models: 1
+      revoked_models: 0
+      latest_certification: '2024-10-30'
+      transports:
+      - bluetooth
+      - wi-fi
+      examples:
+      - Xiaomi Smart LED Bulb
+      lapsed: false
+    - product: unspecified device type
+      device_type_id: null
+      models: 1
+      revoked_models: 0
+      latest_certification: '2024-12-09'
+      transports:
+      - bluetooth
+      - wi-fi
+      examples: null
+      lapsed: false
+    signal_note: certified_products = one entry per device type (diversity), not per model
+    detected_by: sweep-iot.py
+    detected: '2026-10-19'
 - partner_name: OpenRouter
   partner: openrouter
   partner_match: router
@@ -185,9 +195,39 @@ edges:
     note: 'xiaomi declares OpenAI compatibility: ''description: Creates a chat completion response from the specified
       MiMo model. The API is OpenAI-compatible and supports streaming, function calling, and multi-'''
     detected_by: sweep-model-routing.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   detected_by: sweep-model-routing.py
   first_seen: '2026-10-13'
+- partner_name: SkillsMP (skillsmp.com)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  category: Agent Skills register
+  evidence: https://skillsmp.com/creators/xiaomi
+  channel: standard-directory
+  relationship: compatible
+  shape: agent-skills
+  evidence_kind: register-listing
+  degree: listed
+  report_only: true
+  agent_skills_register:
+    repos:
+    - xiaomi
+    repo_verified: false
+    signal_note: the provider's own-org repos the register lists; skill / install counts never read
+  contract_reference:
+    register: SkillsMP (skillsmp.com) (public sitemap / list)
+    spec_file: null
+    standard: Agent Skills (agentskills.io)
+    role: agent-skills-listing
+    matched_org: xiaomi
+    matched_by: org-profile-domain:mi.com
+    sample_skills: []
+    detected_by: sweep-agent-skills.py
+    detected: '2026-10-20'
+  detected_by: sweep-agent-skills.py
+  first_seen: '2026-10-20'
 generated: '2026-10-13'
 method: searched
 checked:
@@ -197,4 +237,12 @@ checked:
 - https://openrouter.ai/api/v1/models
 - https://storage.googleapis.com/tcfac/additional-consent-providers.csv
 - https://vendor-list.consensu.org/v3/vendor-list.json
+- https://api.github.com
+- https://claude-plugins.dev/sitemap.xml
+- https://github.com/VoltAgent/awesome-agent-skills
+- https://officialskills.sh/sitemap.xml
+- https://skillsmp.com/sitemap.xml
+- https://www.skills.sh/sitemap.xml
 marketplace_apps: []
+source:
+- https://www.skills.sh/sitemap.xml
