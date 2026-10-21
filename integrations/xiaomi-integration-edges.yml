@@ -228,6 +228,48 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-agent-skills.py
   first_seen: '2026-10-20'
+- partner_name: Apple MFi Program (licensed accessories)
+  partner: apple
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://mfi.apple.com/en/account/accessory-search
+  category: Apple accessory licensing
+  contract_reference:
+    register: Apple MFi licensed accessory search (mfi.apple.com/account/accessory-search)
+    standard: Apple MFi Program
+    spec_file: null
+    role: mfi-licensed-accessory-brand
+    registered_name: Xiaomi
+    register_id: https://mfi.apple.com/en/account/accessory-search
+    matched_domain: null
+    matched_by: register-name
+    register_name_note: register-name 'xiaomi' = xiaomi; wikidata P856 mi.co.id, mi.com, xiaomi.com agrees or unheld
+    certified_products:
+    - product: HomeKit
+      lapsed: false
+      accessories_listed: 2
+    - product: iAP (iPod Accessory Protocol)
+      lapsed: false
+      accessories_listed: 7
+    products_sample:
+    - Mi Smart Door Lock Pro
+    - Xiaomi MIX Flip 2 Instant Print Kit
+    - Xiaomi Portable Photo Printer 1S
+    - Xiaomi Portable Photo Printer Pro
+    - Xiaomi Smart Door Lock 1S Video Version
+    signal_note: certified_products = one entry per MFi technology group the brand holds a licensed accessory in,
+      never per accessory, model or UPC (context only). The search lists current licences and marks none withdrawn,
+      so lapsed is false
+    detected_by: sweep-apple-mfi-ecosystem.py
+    detected: '2026-10-21'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-apple-mfi-ecosystem.py
+  first_seen: '2026-10-21'
 generated: '2026-10-13'
 method: searched
 checked:
@@ -243,6 +285,9 @@ checked:
 - https://officialskills.sh/sitemap.xml
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
+- https://csa-iot.org/csa-iot_products/
+- https://mfi.apple.com/en/account/accessory-search
+- https://partnernetwork.apple.com/
 marketplace_apps: []
 source:
 - https://www.skills.sh/sitemap.xml
