@@ -236,3 +236,40 @@
       P856 not contradicting (Kin 2026-10-20 decision 2)
   status: not-a-workflow
   arazzo: null
+- slug: xiaomi-cve-program-cve-numbering-authorities
+  label: CVE Program (CVE Numbering Authorities)
+  partner_name: CVE Program (CVE Numbering Authorities)
+  category: Vulnerability disclosure (CVE Numbering Authority)
+  type: register
+  channel: standard-directory
+  evidence: https://www.cve.org/PartnerInformation/ListofPartners/partner/Xiaomi
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CVE Program CNA list (github.com/CVEProject/cve-website CNAsList.json @ 239d3d9b68e0)
+    standard: CVE Program CNA Operational Rules (CVE Numbering Authority)
+    spec_file: null
+    role: cve-numbering-authority
+    registered_name: Xiaomi Technology Co., Ltd.
+    matched_domain: mi.com
+    matched_by: domain
+    cna_id: CNA-2020-0019
+    cna_short_name: Xiaomi
+    cna_types:
+    - Vendor
+    cna_roles:
+    - CNA
+    scope: Xiaomi issues only.
+    top_level_root: MITRE Corporation
+    root: n/a
+    security_advisories:
+    - https://trust.mi.com/misrc/bulletins
+    disclosure_policy:
+    - https://trust.mi.com/misrc/response
+    country: China
+    signal_note: listing as a CVE Numbering Authority = participation (a public commitment to assign CVE IDs and
+      publish advisories for its scope); never a count of CVEs
+    detected_by: sweep-vulnerability-disclosure-cna.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
