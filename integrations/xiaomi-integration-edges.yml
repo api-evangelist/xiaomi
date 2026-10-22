@@ -346,6 +346,78 @@ edges:
   apps:
   - Minote Sync
   - MiMo
+- partner_name: Home Assistant Community Store (HACS)
+  partner: null
+  partner_match: register-name
+  type: marketplace
+  marketplace: HACS default repository
+  evidence: https://github.com/fineemb/xiaomi-cloud
+  category: home-automation
+  contract_reference:
+    register: HACS default integration list (github.com/hacs/default, pinned commit) + HA analytics custom_integrations.json
+    standard: Home Assistant custom integration (HACS)
+    spec_file: null
+    role: hacs-community-integration
+    register_id: https://raw.githubusercontent.com/hacs/default/dee7a0eddd9644e8373be114cdb7818443014ba0/integration
+    pinned_commit: dee7a0eddd9644e8373be114cdb7818443014ba0
+    matched_by: register-name
+    match_note: register-name 'xiaomi' = xiaomi; wikidata P856 mi.co.id, mi.com, xiaomi.com agrees or unheld
+    integrations:
+    - domain: xiaomi_cloud
+      name: Xiaomi Cloud
+      repo: https://github.com/fineemb/xiaomi-cloud
+      builder: fineemb
+      installs: 25
+      installs_band: 10-100
+    max_installs: 25
+    installs_source: https://analytics.home-assistant.io/custom_integrations.json
+    signal_note: installs = HA's opt-in analytics count for the integration's domain on the read date (a floor,
+      opt-in only); per-integration context, never summed or counted as edges
+    detected_by: sweep-home-assistant-hacs-custom.py
+    detected: '2026-10-22'
+    registered_name: Xiaomi Cloud
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-home-assistant-hacs-custom.py
+  first_seen: '2026-10-22'
+  channel: partner-built
+  relationship: connector-coverage
+  direction: partner-built
+- partner_name: Home Assistant Community Store (HACS)
+  partner: null
+  partner_match: register
+  type: marketplace
+  marketplace: HACS default repository
+  evidence: https://github.com/XiaoMi/ha_xiaomi_home
+  category: home-automation
+  contract_reference:
+    register: HACS default integration list (github.com/hacs/default, pinned commit) + HA analytics custom_integrations.json
+    standard: Home Assistant custom integration (HACS)
+    spec_file: null
+    role: hacs-first-party-integration
+    register_id: https://raw.githubusercontent.com/hacs/default/dee7a0eddd9644e8373be114cdb7818443014ba0/integration
+    pinned_commit: dee7a0eddd9644e8373be114cdb7818443014ba0
+    matched_by: domain
+    match_note: org XiaoMi (Xiaomi) site/doc mi.com
+    integrations:
+    - domain: xiaomi_home
+      name: Xiaomi Home
+      repo: https://github.com/XiaoMi/ha_xiaomi_home
+      builder: XiaoMi
+      installs: 20022
+      installs_band: 10k+
+    max_installs: 20022
+    installs_source: https://analytics.home-assistant.io/custom_integrations.json
+    signal_note: installs = HA's opt-in analytics count for the integration's domain on the read date (a floor,
+      opt-in only); per-integration context, never summed or counted as edges
+    detected_by: sweep-home-assistant-hacs-custom.py
+    detected: '2026-10-22'
+  detected_by: sweep-home-assistant-hacs-custom.py
+  first_seen: '2026-10-22'
+  channel: provider-built
+  relationship: platform-app
+  direction: third-party
 generated: '2026-10-13'
 method: searched
 checked:
@@ -371,6 +443,8 @@ checked:
 - https://raw.githubusercontent.com/<repo>/HEAD/manifest.json
 - https://raw.githubusercontent.com/obsidianmd/obsidian-releases/793b52114f54b055b760ef47761ec5c93d689804/community-plugin-stats.json
 - https://raw.githubusercontent.com/obsidianmd/obsidian-releases/793b52114f54b055b760ef47761ec5c93d689804/community-plugins.json
+- https://analytics.home-assistant.io/custom_integrations.json
+- https://raw.githubusercontent.com/hacs/default/dee7a0eddd9644e8373be114cdb7818443014ba0/integration
 marketplace_apps: []
 source:
 - https://www.skills.sh/sitemap.xml
